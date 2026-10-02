@@ -1,0 +1,83 @@
+/*
+ * Signature "technical drawing" patterns from chanhdai.com globals.css.
+ * Hairlines run edge-to-edge of the viewport (left:-100vw; width:200vw); an ancestor needs overflow-x:clip.
+ * Plain classes in the components layer so source order decides overrides (e.g. *-border variants).
+ */
+@layer components {
+  .screen-line-top,
+  .screen-line-bottom {
+    position: relative;
+  }
+  .screen-line-top::before,
+  .screen-line-bottom::after {
+    content: "";
+    position: absolute;
+    left: -100vw;
+    width: 200vw;
+    height: 1px;
+    background: var(--line);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .screen-line-top::before { top: 0; }
+  .screen-line-bottom::after { bottom: 0; }
+  .screen-line-top-border::before { background: var(--border); }
+  .screen-line-bottom-border::after { background: var(--border); }
+
+  .diagonal-stripes {
+    background-image: repeating-linear-gradient(315deg, var(--pattern-stripe) 0, var(--pattern-stripe) 1px, transparent 0, transparent 50%);
+    background-size: 10px 10px;
+  }
+  .dot-grid {
+    background-image: radial-gradient(var(--pattern-dot) 1px, transparent 0);
+    background-size: 8px 8px;
+  }
+  .stripe-divider {
+    position: relative;
+  }
+  .stripe-divider::before {
+    content: "";
+    position: absolute;
+    left: -100vw;
+    width: 200vw;
+    height: 100%;
+    z-index: -1;
+    background-image: repeating-linear-gradient(315deg, var(--pattern-stripe) 0, var(--pattern-stripe) 1px, transparent 0, transparent 50%);
+    background-size: 10px 10px;
+  }
+
+  .link {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .link:hover { text-decoration-line: underline; }
+
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, currentColor 30%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+  .link-underline:hover { text-decoration-color: currentColor; }
+
+  .typeset-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--foreground);
+  }
+  .typeset-description p { margin: 0 0 1em; }
+  .typeset-description ul { margin: 0; padding-left: 1.25em; list-style: disc; }
+  .typeset-description li { margin: 0 0 0.5em; }
+  .typeset-description li::marker { color: var(--muted-foreground); font-size: 0.75rem; }
+  .typeset-description :last-child { margin-bottom: 0; }
+
+  /* One-shot text shimmer used by FlipSentences. */
+  .text-shimmer {
+    background: linear-gradient(90deg, var(--muted-foreground) 0%, var(--muted-foreground) 40%, var(--foreground) 50%, var(--muted-foreground) 60%, var(--muted-foreground) 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}

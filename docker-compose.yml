@@ -1,0 +1,18 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-}
+    image: reza-tabrizi-portfolio:latest
+    container_name: reza-tabrizi-portfolio
+    ports:
+      - "${PORT:-8080}:8080"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
