@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { PORTFOLIO as P } from '~/data/portfolio'
 
 const mailto = `mailto:${P.email}`
-const collaborationMailto = `${mailto}?subject=${encodeURIComponent(P.openSource.ctaSubject)}`
+const collaborationMailto = `${mailto}?subject=${encodeURIComponent(P.contributing.ctaSubject)}`
 
 useHead({
   script: [{
@@ -167,16 +167,16 @@ useHead({
 
     <StripeDivider />
 
-    <Panel id="open-source">
+    <Panel id="contributing">
       <PanelHeader>
-        <PanelTitle href="#open-source">
-          {{ P.openSource.title }}
+        <PanelTitle href="#contributing">
+          {{ P.contributing.title }}
         </PanelTitle>
       </PanelHeader>
       <PanelContent class="flex flex-col gap-4">
         <div class="typeset-description">
           <p
-            v-for="(paragraph, i) in P.openSource.paragraphs"
+            v-for="(paragraph, i) in P.contributing.paragraphs"
             :key="i"
           >
             {{ paragraph }}
@@ -190,7 +190,7 @@ useHead({
             :href="collaborationMailto"
             data-cursor-label="Email"
           >
-            <Mail />{{ P.openSource.ctaLabel }}
+            <Mail />{{ P.contributing.ctaLabel }}
           </Button>
         </div>
       </PanelContent>

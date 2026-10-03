@@ -14,7 +14,7 @@ export const NAV: NavItem[] = [
   { title: 'Stack', href: '#stack' },
   { title: 'Experience', href: '#experience' },
   { title: 'Projects', href: '#projects' },
-  { title: 'Open Source', href: '#open-source' },
+  { title: 'Contributing', href: '#contributing' },
 ]
 
 export const FOOTER_SOCIALS: SocialLink[] = [
@@ -162,8 +162,8 @@ export const PORTFOLIO: Portfolio = {
       ],
     },
   ],
-  openSource: {
-    title: 'Open Source & Collaboration',
+  contributing: {
+    title: 'Contributing',
     paragraphs: [
       'I\'m interested in open-source projects that solve real, everyday problems: small, well-documented tools that save other developers time. vue-jalali-datetime-picker started that way, filling a gap for Persian-locale Vue applications.',
       'I\'d be happy to contribute to useful projects in the .NET and Vue ecosystems, whether that\'s building features, fixing bugs, reviewing pull requests, improving documentation, or helping maintain a library long-term. If you have an idea or an issue that needs an extra pair of hands, get in touch.',

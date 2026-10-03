@@ -91,6 +91,6 @@ export interface Portfolio {
   stack: StackGroup[]
   experience: Experience[]
   projects: Project[]
-  openSource: { title: string, paragraphs: string[], ctaLabel: string, ctaSubject: string }
+  contributing: { title: string, paragraphs: string[], ctaLabel: string, ctaSubject: string }
   education: Education[]
 }
