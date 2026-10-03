@@ -38,7 +38,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
         >{{ subtitle }}</span>
       </div>
 
-      <dl
+      <!-- <dl
         v-if="fields?.length"
         class="grid grid-cols-2 gap-px bg-line font-mono sm:grid-cols-4"
       >
@@ -73,9 +73,9 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
             </template>
           </dd>
         </div>
-      </dl>
+      </dl> -->
 
-      <div class="h-4 screen-line-top" />
+      <!-- <div class="h-4 screen-line-top" /> -->
 
       <div class="flex items-center gap-3 px-4 py-3 text-muted-foreground screen-line-top screen-line-bottom screen-line-bottom-border">
         <NuxtLink
@@ -114,6 +114,6 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
         </template>
       </div>
     </div>
-    <div class="h-(--fade-bottom-height)" />
+    <!-- <div class="h-(--fade-bottom-height)" /> -->
   </footer>
 </template>
