@@ -1,16 +1,16 @@
-/* CAD cursor. Rendered with mix-blend-mode:difference so one white stroke reads on both light and dark themes. */
+/* CAD cursor. Drawn in the theme foreground colour (currentColor) so it reads on both light and dark themes. */
 @media (pointer: fine) {
   html.rt-cursor-on,
   html.rt-cursor-on * { cursor: none !important; }
 }
-.rt-cursor { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; mix-blend-mode: difference; color: #fff; opacity: 0; transition: opacity 0.2s; }
+.rt-cursor { position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; color: var(--foreground); opacity: 0; transition: opacity 0.2s; }
 .rt-cursor__line-h,
-.rt-cursor__line-v { position: absolute; background: #fff; opacity: 0.14; will-change: transform; }
+.rt-cursor__line-v { position: absolute; background: currentColor; opacity: 0.14; will-change: transform; }
 .rt-cursor__line-h { left: 0; top: 0; width: 100%; height: 1px; }
 .rt-cursor__line-v { top: 0; left: 0; height: 100%; width: 1px; }
-.rt-cursor__dot { position: absolute; left: 0; top: 0; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; background: #fff; will-change: transform; transition: width 0.15s, height 0.15s, margin 0.15s, opacity 0.15s; }
+.rt-cursor__dot { position: absolute; left: 0; top: 0; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; background: currentColor; will-change: transform; transition: width 0.15s, height 0.15s, margin 0.15s, opacity 0.15s; }
 .rt-cursor__box { position: absolute; left: 0; top: 0; will-change: transform, width, height; }
-.rt-cursor__c { position: absolute; width: var(--b, 8px); height: var(--b, 8px); border: 0 solid #fff; }
+.rt-cursor__c { position: absolute; width: var(--b, 8px); height: var(--b, 8px); border: 0 solid currentColor; }
 .rt-cursor__c--tl { left: 0; top: 0; border-top-width: 1px; border-left-width: 1px; border-top-left-radius: var(--r, 2px); }
 .rt-cursor__c--tr { right: 0; top: 0; border-top-width: 1px; border-right-width: 1px; border-top-right-radius: var(--r, 2px); }
 .rt-cursor__c--bl { left: 0; bottom: 0; border-bottom-width: 1px; border-left-width: 1px; border-bottom-left-radius: var(--r, 2px); }

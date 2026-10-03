@@ -20,13 +20,13 @@ const props = withDefaults(defineProps<{
 
 const INTERACTIVE = 'a,button,[role="button"],summary,label,select,[data-cursor]'
 const TEXTY = 'input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=range]),textarea,[contenteditable="true"],[data-cursor="text"]'
-const pad4 = (n: number) => String(Math.max(0, Math.round(n))).padStart(4, '0')
+// const pad4 = (n: number) => String(Math.max(0, Math.round(n))).padStart(4, '0')
 
 const root = useTemplateRef<HTMLDivElement>('root')
 const dot = useTemplateRef<HTMLDivElement>('dot')
 const box = useTemplateRef<HTMLDivElement>('box')
-const lineH = useTemplateRef<HTMLDivElement>('lineH')
-const lineV = useTemplateRef<HTMLDivElement>('lineV')
+// const lineH = useTemplateRef<HTMLDivElement>('lineH')
+// const lineV = useTemplateRef<HTMLDivElement>('lineV')
 const label = useTemplateRef<HTMLDivElement>('label')
 
 let cleanup: (() => void) | undefined
@@ -104,16 +104,24 @@ onMounted(() => {
       b.style.setProperty('--b', `${Math.min(props.bracket + (bw - props.size) * 0.08, bw / 2, bh / 2)}px`)
     }
     if (dot.value) dot.value.style.transform = `translate3d(${mx}px,${my}px,0)`
-    if (lineH.value && lineV.value) {
-      lineH.value.style.transform = `translate3d(0,${my}px,0)`
-      lineV.value.style.transform = `translate3d(${mx}px,0,0)`
-    }
+    // Crosshair hairlines disabled
+    // if (lineH.value && lineV.value) {
+    //   lineH.value.style.transform = `translate3d(0,${my}px,0)`
+    //   lineV.value.style.transform = `translate3d(${mx}px,0,0)`
+    // }
     if (label.value) {
       label.value.textContent = hovering
         ? (target!.getAttribute('data-cursor-label') || target!.getAttribute('aria-label') || '')
-        : `X ${pad4(mx)}  Y ${pad4(my)}`
-      const lx = hovering ? bx - bw / 2 : mx + 14
-      const ly = hovering ? by + bh / 2 + 6 : my + 14
+        : '' // X/Y readout disabled: `X ${pad4(mx)}  Y ${pad4(my)}`
+      const lw = label.value.offsetWidth
+      const lh = label.value.offsetHeight
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+      let lx = hovering ? bx - bw / 2 : mx + 14
+      let ly = hovering ? by + bh / 2 + 6 : my + 14
+      // No room below: flip the label above the reticle/pointer
+      if (ly + lh > vh - 4) ly = hovering ? by - bh / 2 - 6 - lh : my - 14 - lh
+      lx = Math.max(4, Math.min(lx, vw - lw - 4))
       label.value.style.transform = `translate3d(${lx}px,${ly}px,0)`
     }
     raf = requestAnimationFrame(tick)
@@ -147,6 +155,7 @@ onBeforeUnmount(() => cleanup?.())
     data-state="idle"
     aria-hidden="true"
   >
+    <!-- Crosshair hairlines disabled
     <template v-if="crosshair">
       <div
         ref="lineH"
@@ -157,6 +166,7 @@ onBeforeUnmount(() => cleanup?.())
         class="rt-cursor__line-v"
       />
     </template>
+    -->
     <div
       ref="box"
       class="rt-cursor__box"
