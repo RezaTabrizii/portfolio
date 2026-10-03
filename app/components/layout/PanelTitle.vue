@@ -36,7 +36,7 @@ function copyLink() {
     <slot v-else />
     <sup
       v-if="sup != null"
-      class="top-[-0.75em] ml-1 align-super text-sm leading-9 font-medium tracking-normal text-muted-foreground"
+      class="relative top-[-0.9em] ml-1 align-baseline text-sm leading-none font-medium tracking-normal text-muted-foreground"
     >{{ sup }}</sup>
     <button
       v-if="copyable && href"
