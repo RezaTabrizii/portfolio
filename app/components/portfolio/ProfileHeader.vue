@@ -15,8 +15,8 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="grid grid-cols-[auto_1fr] grid-rows-[1fr_auto] overflow-y-clip border-x screen-line-bottom screen-line-bottom-border">
-    <figure class="relative col-start-2 row-start-1 m-0 min-h-0 p-4">
+  <div class="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-[1fr_auto] overflow-y-clip border-x screen-line-bottom screen-line-bottom-border">
+    <figure class="relative col-start-2 row-start-1 m-0 hidden min-h-0 p-4 sm:block">
       <slot name="figure" />
       <figcaption class="pointer-events-none absolute right-4 bottom-4 font-mono text-sm leading-none tracking-wide text-[color-mix(in_oklab,var(--muted-foreground)_60%,var(--background))] tabular-nums select-none">
         {{ caption }}
@@ -26,7 +26,7 @@ withDefaults(defineProps<{
     <div class="col-start-1 row-span-2 row-start-1 flex flex-col">
       <div class="mt-auto shrink-0 border-r border-line screen-line-top">
         <div class="mx-0.5 my-[3px] flex">
-          <div class="relative size-32 rounded-full sm:size-40">
+          <div class="relative size-24 rounded-full sm:size-32 md:size-40">
             <img
               v-if="avatarSrc"
               :src="avatarSrc"
@@ -45,10 +45,11 @@ withDefaults(defineProps<{
       </div>
     </div>
 
-    <div class="col-start-2 row-start-2 flex flex-col">
-      <div class="z-1 mt-auto border-t border-line">
-        <div class="flex -translate-x-px items-center gap-2 pl-4">
-          <h1 class="-translate-y-px text-[2rem] leading-none font-medium tracking-tight">
+    <!-- Below sm the figure is hidden and the name block takes over its rows. -->
+    <div class="col-start-2 row-span-2 row-start-1 flex flex-col sm:row-span-1 sm:row-start-2">
+      <div class="z-1 flex flex-1 flex-col sm:mt-auto sm:flex-none sm:border-t sm:border-line">
+        <div class="flex min-w-0 flex-1 -translate-x-px items-center gap-2 py-2 pr-2 pl-3 sm:py-0 sm:pl-4">
+          <h1 class="min-w-0 -translate-y-px truncate text-3xl leading-tight font-medium tracking-tight sm:text-4xl">
             {{ name }}
           </h1>
           <svg
@@ -63,7 +64,7 @@ withDefaults(defineProps<{
             />
           </svg>
         </div>
-        <div class="h-9 border-t border-line py-1 pl-4 text-muted-foreground">
+        <div class="flex h-9 min-w-0 items-center border-t border-line py-1 pr-2 pl-3 text-muted-foreground sm:pl-4">
           <FlipSentences :sentences="sentences" />
         </div>
       </div>
