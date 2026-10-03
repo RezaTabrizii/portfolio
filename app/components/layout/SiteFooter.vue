@@ -84,7 +84,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
           class="mr-auto flex"
         >
           <img
-            src="/logo-glyph.png"
+            src="/rt-symbol-black.svg"
             alt=""
             width="16"
             height="16"

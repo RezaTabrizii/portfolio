@@ -31,12 +31,12 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
       <NuxtLink
         to="/"
         :aria-label="logoAlt ?? 'Home'"
-        class="flex"
+        class="flex mt-1"
         @click="scrollToTop"
       >
         <!-- logo-glyph.png has an opaque white background: multiply on light, invert + screen on dark. -->
         <img
-          src="/logo-glyph.png"
+          src="/rt-symbol-black.svg"
           alt=""
           width="24"
           height="24"
