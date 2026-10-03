@@ -27,19 +27,19 @@ useHead({
   <div class="mx-auto max-w-rail">
     <ProfileHeader
       :name="P.name"
-      avatar-src="/logo-tile.png"
+      avatar-src="/profile1.jpg"
       :avatar-alt="P.avatarAlt"
       :sentences="P.sentences"
     >
       <template #figure>
         <div class="absolute inset-0 flex items-center justify-center dot-grid">
-          <img
+          <!-- <img
             src="/logo-glyph.png"
             alt=""
             width="56"
             height="56"
             class="w-14 opacity-85 mix-blend-multiply dark:mix-blend-screen dark:invert"
-          >
+          > -->
         </div>
       </template>
     </ProfileHeader>
