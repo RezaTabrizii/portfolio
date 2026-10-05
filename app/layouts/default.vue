@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { CV, FOOTER_FIELDS, FOOTER_SOCIALS, GITHUB_URL, NAV, PORTFOLIO } from '~/data/portfolio'
+
+// Replay the loader on every refresh in dev; once per tab in production.
+const isDev = import.meta.dev
 </script>
 
 <!-- `isolate` gives the full-bleed hairlines (z-index:-1 pseudo-elements) a stacking context. -->
@@ -9,6 +12,12 @@ import { CV, FOOTER_FIELDS, FOOTER_SOCIALS, GITHUB_URL, NAV, PORTFOLIO } from '~
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-foreground focus:px-3 focus:py-2 focus:text-sm focus:text-background"
     >Skip to content</a>
+
+    <SiteLoader
+      :title="PORTFOLIO.name"
+      subtitle="Full-Stack · .NET & Vue"
+      :once-per-session="!isDev"
+    />
 
     <ClientOnly>
       <CustomCursor />

@@ -13,6 +13,7 @@
 @import "./fonts.css";
 @import "./patterns.css";
 @import "./cursor.css";
+@import "./loader.css";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -1,0 +1,161 @@
+/* Initial CAD loader (SiteLoader.vue). Drawn in the theme foreground colour so it follows light/dark. */
+@property --rt-p {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.rt-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482000;
+  color: var(--foreground);
+  background: var(--background);
+  clip-path: inset(0 0 0 0);
+  pointer-events: auto;
+  /* Failsafe: if the app never hydrates, get out of the way anyway. */
+  animation: rt-loader-failsafe 0.4s ease 8s forwards;
+}
+.rt-skip-loader .rt-loader { display: none; }
+
+.rt-loader__inner {
+  position: absolute;
+  inset: 0;
+  font-family: var(--font-mono);
+  font-feature-settings: var(--mono-features);
+  animation: rt-loader-progress 1.4s cubic-bezier(0.3, 0.6, 0.4, 1) forwards;
+}
+.rt-loader__grid { position: absolute; inset: 0; opacity: 0; animation: rt-loader-fade 0.8s ease 0.1s forwards; }
+
+/* Crosshair through the centre, opening out from the middle. */
+.rt-loader__line-h,
+.rt-loader__line-v { position: absolute; background: var(--border); }
+.rt-loader__line-h { left: 0; right: 0; top: 50%; height: 1px; transform: scaleX(0); animation: rt-loader-scale-x 0.9s var(--expo-out) forwards; }
+.rt-loader__line-v { top: 0; bottom: 0; left: 50%; width: 1px; transform: scaleY(0); animation: rt-loader-scale-y 0.9s var(--expo-out) 0.1s forwards; }
+
+/* Corner-bracket frame, same language as the cursor reticle. */
+.rt-loader__frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 9rem;
+  height: 9rem;
+  translate: -50% -50%;
+  background: var(--background);
+  scale: 0.6;
+  opacity: 0;
+  animation: rt-loader-frame-in 0.7s var(--expo-out) 0.2s forwards;
+}
+.rt-loader__c { position: absolute; width: 12px; height: 12px; border: 0 solid currentColor; }
+.rt-loader__c--tl { left: 0; top: 0; border-top-width: 1px; border-left-width: 1px; }
+.rt-loader__c--tr { right: 0; top: 0; border-top-width: 1px; border-right-width: 1px; }
+.rt-loader__c--bl { left: 0; bottom: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.rt-loader__c--br { right: 0; bottom: 0; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* Dimension marks: |—— 308 ——| above the frame, rotated one to its right. */
+.rt-loader__dim {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--muted-foreground);
+  opacity: 0;
+  animation: rt-loader-fade 0.5s ease 0.7s forwards;
+}
+.rt-loader__dim::before,
+.rt-loader__dim::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.5; }
+.rt-loader__dim--x { left: 0; right: 0; top: -1.25rem; height: 7px; border-inline: 1px solid color-mix(in oklab, currentColor 50%, transparent); }
+.rt-loader__dim--y { top: 0; bottom: 0; right: -1.25rem; width: 7px; flex-direction: column; border-block: 1px solid color-mix(in oklab, currentColor 50%, transparent); }
+.rt-loader__dim--y::before,
+.rt-loader__dim--y::after { width: 1px; height: auto; }
+.rt-loader__dim--y span { writing-mode: vertical-rl; }
+
+/* The glyph: each subpath traces its outline, then the whole mark fills in. */
+.rt-loader__glyph {
+  position: absolute;
+  inset: 1.75rem;
+  width: calc(100% - 3.5rem);
+  height: calc(100% - 3.5rem);
+  overflow: visible;
+}
+.rt-loader__glyph path {
+  fill: currentColor;
+  fill-opacity: 0;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linejoin: miter;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    rt-loader-draw 0.8s cubic-bezier(0.65, 0, 0.35, 1) calc(0.35s + var(--i) * 0.09s) forwards,
+    rt-loader-fill 0.5s ease 1.25s forwards;
+}
+
+/* Corner readouts. */
+.rt-loader__meta {
+  position: absolute;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  opacity: 0;
+  animation: rt-loader-fade 0.5s ease 0.4s forwards;
+}
+.rt-loader__meta--tl { inset-inline-start: 1rem; top: 1rem; color: var(--foreground); }
+.rt-loader__meta--tr { inset-inline-end: 1rem; top: 1rem; }
+.rt-loader__meta--bl { inset-inline-start: 1rem; bottom: 1.25rem; display: flex; align-items: center; gap: 6px; }
+.rt-loader__meta--br { inset-inline-end: 1rem; bottom: 1.25rem; color: var(--foreground); }
+.rt-loader__blink { width: 5px; height: 5px; background: currentColor; animation: rt-loader-blink 1s steps(1) infinite; }
+.rt-loader__count::before { counter-reset: rt-p var(--rt-p); content: counter(rt-p) "%"; }
+
+/* Progress hairline along the bottom edge. */
+.rt-loader__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--foreground);
+  transform-origin: 0 50%;
+  transform: scaleX(calc(var(--rt-p) / 100));
+}
+[dir="rtl"] .rt-loader__bar { transform-origin: 100% 50%; }
+
+@media (min-width: 640px) {
+  .rt-loader__meta--tl,
+  .rt-loader__meta--bl { inset-inline-start: 1.5rem; }
+  .rt-loader__meta--tr,
+  .rt-loader__meta--br { inset-inline-end: 1.5rem; }
+  .rt-loader__meta--tl,
+  .rt-loader__meta--tr { top: 1.5rem; }
+}
+
+/* Finished: counter runs out to 100, contents lift away, then the sheet wipes up. */
+.rt-loader[data-state="done"] { animation: rt-loader-exit 0.8s var(--expo-out) 0.45s forwards; pointer-events: none; }
+.rt-loader[data-state="done"] .rt-loader__inner {
+  animation:
+    rt-loader-progress-end 0.35s ease-out forwards,
+    rt-loader-lift 0.5s cubic-bezier(0.7, 0, 0.84, 0) 0.35s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-loader[data-state="done"] { animation-delay: 0s; }
+  .rt-loader__blink { animation: none; }
+}
+
+@keyframes rt-loader-progress { from { --rt-p: 0; } to { --rt-p: 90; } }
+@keyframes rt-loader-progress-end { from { --rt-p: 90; } to { --rt-p: 100; } }
+@keyframes rt-loader-fade { to { opacity: 1; } }
+@keyframes rt-loader-scale-x { to { transform: scaleX(1); } }
+@keyframes rt-loader-scale-y { to { transform: scaleY(1); } }
+@keyframes rt-loader-frame-in { to { scale: 1; opacity: 1; } }
+@keyframes rt-loader-draw { to { stroke-dashoffset: 0; } }
+@keyframes rt-loader-fill { to { fill-opacity: 1; } }
+@keyframes rt-loader-blink { 50% { opacity: 0; } }
+@keyframes rt-loader-lift { from { --rt-p: 100; } to { --rt-p: 100; opacity: 0; transform: translateY(-1.5rem); } }
+@keyframes rt-loader-exit { to { clip-path: inset(0 0 100% 0); } }
+@keyframes rt-loader-failsafe { to { opacity: 0; visibility: hidden; } }
