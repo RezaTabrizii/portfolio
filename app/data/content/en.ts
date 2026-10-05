@@ -6,7 +6,7 @@ export default {
     description: 'Full-stack developer with 3+ years building production systems end-to-end in .NET and Vue. Based in Tabriz, Iran — open to remote.',
   },
   name: 'Reza Tabrizi',
-  avatarAlt: 'RT monogram',
+  avatarAlt: 'Portrait of Reza Tabrizi',
   jobTitle: 'Full-Stack Developer',
   tagline: 'Full-Stack · .NET & Vue',
   headline: 'Full-Stack Developer — .NET & Vue',

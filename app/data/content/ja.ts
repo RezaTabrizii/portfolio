@@ -6,7 +6,7 @@ export default {
     description: '.NET と Vue による本番システムのエンドツーエンド開発に 3 年以上携わるフルスタック開発者。イラン・タブリーズ在住、リモート勤務可。',
   },
   name: 'Reza Tabrizi',
-  avatarAlt: 'RT モノグラム',
+  avatarAlt: 'Reza Tabrizi のポートレート',
   jobTitle: 'フルスタック開発者',
   tagline: 'フルスタック · .NET & Vue',
   headline: 'フルスタック開発者 — .NET & Vue',

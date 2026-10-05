@@ -1,28 +1,92 @@
 <script setup lang="ts">
 import { Mail } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
+import { CONTENT } from '~/data/content'
+import { AVATAR, SPOKEN_LANGUAGES } from '~/data/portfolio'
 
-const { t } = useI18n()
+const { t, localeProperties } = useI18n()
 const P = usePortfolio()
 
 const mailto = computed(() => `mailto:${P.value.email}`)
 const tel = computed(() => `tel:${P.value.phone.replace(/\s+/g, '')}`)
 const collaborationMailto = computed(() => `${mailto.value}?subject=${encodeURIComponent(P.value.contributing.ctaSubject)}`)
 
+// Structured data for search and answer engines: a ProfilePage about one Person, plus the
+// open-source package they author. The Person keeps one `@id` across locales so every
+// translation describes the same entity.
+const route = useRoute()
+const { siteUrl, buildDate } = useRuntimeConfig().public
+const abs = (path: string) => `${siteUrl}${path}`
+const PERSON_ID = abs('/#person')
+const WEBSITE_ID = abs('/#website')
+
+const structuredData = computed(() => {
+  const p = P.value
+  const pageUrl = abs(route.path === '/' ? '/' : route.path)
+  const otherNames = [...new Set(Object.values(CONTENT).map(c => c.name))].filter(n => n !== p.name)
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': WEBSITE_ID,
+        'url': abs('/'),
+        'name': p.name,
+        'inLanguage': localeProperties.value.language,
+        'publisher': { '@id': PERSON_ID },
+      },
+      {
+        '@type': 'ProfilePage',
+        '@id': `${pageUrl}#webpage`,
+        'url': pageUrl,
+        'name': p.meta.title,
+        'description': p.meta.description,
+        'inLanguage': localeProperties.value.language,
+        'isPartOf': { '@id': WEBSITE_ID },
+        'mainEntity': { '@id': PERSON_ID },
+        'dateModified': buildDate,
+      },
+      {
+        '@type': 'Person',
+        '@id': PERSON_ID,
+        'name': p.name,
+        'alternateName': otherNames,
+        'url': abs('/'),
+        'image': abs(AVATAR.photo),
+        'jobTitle': p.jobTitle,
+        'description': p.summary,
+        'email': p.email,
+        'telephone': p.phone.replace(/\s+/g, ''),
+        'address': { '@type': 'PostalAddress', 'addressLocality': p.city, 'addressCountry': 'IR' },
+        'knowsLanguage': SPOKEN_LANGUAGES,
+        'knowsAbout': p.stack.flatMap(g => g.items),
+        'worksFor': p.experience.filter(e => e.isCurrent).map(e => ({
+          '@type': 'Organization',
+          'name': e.companyName,
+          ...(e.companyWebsite && { url: e.companyWebsite }),
+        })),
+        'alumniOf': p.education.map(e => ({ '@type': 'EducationalOrganization', 'name': e.school })),
+        'sameAs': p.socials.filter(s => s.href.startsWith('http')).map(s => s.href),
+      },
+      ...p.projects.filter(pr => pr.link).map(pr => ({
+        '@type': 'SoftwareSourceCode',
+        'name': pr.title,
+        'description': [pr.description ?? []].flat().join(' '),
+        'codeRepository': pr.link,
+        'sameAs': pr.links?.map(l => l.href).filter(href => href !== pr.link),
+        'programmingLanguage': pr.skills,
+        'author': { '@id': PERSON_ID },
+      })),
+    ],
+  }
+})
+
 useHead(() => ({
   script: [{
-    key: 'ld-person',
+    key: 'ld-profile',
     type: 'application/ld+json',
-    innerHTML: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      'name': P.value.name,
-      'jobTitle': P.value.jobTitle,
-      'email': mailto.value,
-      'address': { '@type': 'PostalAddress', 'addressLocality': P.value.city, 'addressCountry': 'IR' },
-      'sameAs': P.value.socials.filter(s => s.href.startsWith('http')).map(s => s.href),
-      'knowsAbout': P.value.stack.flatMap(g => g.items),
-    }),
+    // `<` is escaped so copy can never close the script tag early.
+    innerHTML: JSON.stringify(structuredData.value).replace(/</g, '\\u003c'),
   }],
 }))
 </script>
@@ -31,7 +95,8 @@ useHead(() => ({
   <div class="mx-auto max-w-rail">
     <ProfileHeader
       :name="P.name"
-      avatar-src="/profile1.jpg"
+      :avatar-src="AVATAR.src"
+      :avatar-srcset="AVATAR.srcset"
       :avatar-alt="P.avatarAlt"
       :sentences="P.sentences"
     >

@@ -19,10 +19,9 @@ const switchLocalePath = useSwitchLocalePath()
   <DropdownMenuRoot :modal="false">
     <DropdownMenuTrigger
       :aria-label="t('header.language')"
-      :class="buttonVariants({ variant: 'ghost', size: 'icon-sm', class: 'w-auto gap-1 px-1.5' })"
+      :class="buttonVariants({ variant: 'ghost', size: 'icon-sm' })"
     >
       <Languages />
-      <span class="font-mono text-xs uppercase">{{ locale }}</span>
     </DropdownMenuTrigger>
 
     <DropdownMenuPortal>

@@ -3,6 +3,8 @@
 withDefaults(defineProps<{
   name: string
   avatarSrc?: string
+  /** Width descriptors (`/a-160.webp 160w, …`); sizes match the rendered 96/128/160px avatar. */
+  avatarSrcset?: string
   avatarAlt?: string
   sentences?: string[]
   verified?: boolean
@@ -25,9 +27,12 @@ withDefaults(defineProps<{
             <img
               v-if="avatarSrc"
               :src="avatarSrc"
+              :srcset="avatarSrcset"
+              :sizes="avatarSrcset ? '(min-width: 768px) 160px, (min-width: 640px) 128px, 96px' : undefined"
               :alt="avatarAlt"
               width="160"
               height="160"
+              fetchpriority="high"
               class="block size-full rounded-[inherit] object-cover select-none"
             >
             <div

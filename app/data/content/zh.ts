@@ -6,7 +6,7 @@ export default {
     description: '拥有 3 年以上经验的全栈开发工程师，使用 .NET 与 Vue 端到端构建生产系统。现居伊朗大不里士，可远程工作。',
   },
   name: 'Reza Tabrizi',
-  avatarAlt: 'RT 字母标志',
+  avatarAlt: 'Reza Tabrizi 的肖像',
   jobTitle: '全栈开发工程师',
   tagline: '全栈 · .NET & Vue',
   headline: '全栈开发工程师 — .NET & Vue',

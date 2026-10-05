@@ -20,7 +20,7 @@ export interface Position {
   icon?: IconName
   employmentType?: string
   start: MonthYear
-  /** Omit for an ongoing role (renders the infinity glyph). */
+  /** Omit for an ongoing role (renders "Present"). */
   end?: MonthYear
   description?: string | string[]
   skills?: string[]
@@ -43,7 +43,7 @@ export interface Project {
   icon?: IconName
   /**
    * Free text (e.g. "Open source") or `MM.YYYY` dates.
-   * `end` omitted → single label; `'present'` → infinity glyph.
+   * `end` omitted → single label; `'present'` → "Present".
    */
   period: { start: string, end?: string | 'present' }
   link?: string

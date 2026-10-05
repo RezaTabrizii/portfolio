@@ -1,18 +1,8 @@
 import tailwindcss from '@tailwindcss/vite'
+import { DEFAULT_LOCALE, LOCALES, localePath } from './i18n/locales'
 
 // Absolute origin for canonical/OG/hreflang tags, e.g. https://example.com. Omitted when unset.
 const SITE_URL = process.env.NUXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ?? ''
-
-// UI strings live in i18n/locales/<file>; portfolio copy in app/data/content/<code>.ts.
-const LOCALES = [
-  { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
-  { code: 'de', language: 'de-DE', name: 'Deutsch', file: 'de.json' },
-  { code: 'zh', language: 'zh-CN', name: '中文', file: 'zh.json' },
-  { code: 'ja', language: 'ja-JP', name: '日本語', file: 'ja.json' },
-  { code: 'tr', language: 'tr-TR', name: 'Türkçe', file: 'tr.json' },
-  { code: 'fa', language: 'fa-IR', name: 'فارسی', file: 'fa.json', dir: 'rtl' as const },
-]
-const DEFAULT_LOCALE = 'en'
 
 export default defineNuxtConfig({
 
@@ -25,15 +15,13 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
 
-  // Title, description, lang/dir, canonical and hreflang are set per locale in layouts/default.vue.
+  // Title, description, Open Graph, lang/dir, canonical and hreflang are set per locale in
+  // layouts/default.vue; JSON-LD in pages/index.vue.
   app: {
     head: {
       meta: [
         { name: 'theme-color', media: '(prefers-color-scheme: light)', content: '#ffffff' },
         { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#09090b' },
-        { property: 'og:type', content: 'website' },
-        { name: 'twitter:card', content: 'summary' },
-        ...(SITE_URL ? [{ property: 'og:image', content: `${SITE_URL}/logo-tile.png` }] : []),
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -53,13 +41,20 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    public: { siteUrl: SITE_URL },
+    // `buildDate` feeds the sitemap's <lastmod> and the JSON-LD `dateModified`.
+    public: { siteUrl: SITE_URL, buildDate: new Date().toISOString() },
   },
   compatibilityDate: '2026-10-01',
 
   nitro: {
     prerender: {
-      routes: LOCALES.map(l => (l.code === DEFAULT_LOCALE ? '/' : `/${l.code}`)),
+      // The sitemap needs absolute URLs, so it is only generated when the site URL is known.
+      routes: [
+        ...LOCALES.map(l => localePath(l.code)),
+        '/robots.txt',
+        '/llms.txt',
+        ...(SITE_URL ? ['/sitemap.xml'] : []),
+      ],
       crawlLinks: false,
     },
   },

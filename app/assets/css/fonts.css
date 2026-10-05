@@ -1,18 +1,4 @@
-/* Geist 500/600 + Geist Mono 400 — copied from ncdai/chanhdai.com (src/assets/fonts). */
-@font-face {
-  font-family: "Geist";
-  src: url("../fonts/Geist-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Geist";
-  src: url("../fonts/Geist-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
+/* Geist Mono 400 — copied from ncdai/chanhdai.com (src/assets/fonts). */
 @font-face {
   font-family: "Geist Mono";
   src: url("../fonts/GeistMono-Regular.ttf") format("truetype");

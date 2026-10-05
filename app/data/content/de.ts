@@ -6,7 +6,7 @@ export default {
     description: 'Full-Stack-Entwickler mit über 3 Jahren Erfahrung in der End-to-End-Entwicklung von Produktivsystemen mit .NET und Vue. Ansässig in Täbris, Iran — offen für Remote-Arbeit.',
   },
   name: 'Reza Tabrizi',
-  avatarAlt: 'RT-Monogramm',
+  avatarAlt: 'Porträt von Reza Tabrizi',
   jobTitle: 'Full-Stack-Entwickler',
   tagline: 'Full-Stack · .NET & Vue',
   headline: 'Full-Stack-Entwickler — .NET & Vue',

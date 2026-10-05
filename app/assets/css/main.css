@@ -6,10 +6,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Fonts: Geist 500/600 + Geist Mono 400 are the TTFs from the source repo; Geist 400 and
-   Caveat are self-hosted via Fontsource (no third-party font requests). */
+/* Fonts: Geist and Caveat are self-hosted via Fontsource (woff2, unicode-range split, no
+   third-party font requests); Geist Mono 400 is the TTF from the source repo. */
 @import "@fontsource/geist/latin-400.css";
 @import "@fontsource/geist/latin-ext-400.css";
+@import "@fontsource/geist/latin-500.css";
+@import "@fontsource/geist/latin-ext-500.css";
+@import "@fontsource/geist/latin-600.css";
+@import "@fontsource/geist/latin-ext-600.css";
 @import "@fontsource/caveat/latin-400.css";
 /* Persian falls back to Vazirmatn; its faces are unicode-range split, so the Arabic-script file
    is only fetched on `fa` pages. CJK falls back to the system fonts in the stacks below. */

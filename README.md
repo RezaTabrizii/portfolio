@@ -31,7 +31,7 @@ Requires Node 22+ and pnpm 10 (`corepack enable`).
 ```
 app/
   assets/css/        main.css (tokens → shadcn vars + Tailwind @theme), patterns.css, cursor.css, fonts.css
-  assets/fonts/      Geist 500/600 + Geist Mono 400 (from the source repo)
+  assets/fonts/      Geist Mono 400 (from the source repo; Geist itself comes from Fontsource)
   components/
     ui/              shadcn-vue primitives, restyled to the design: button, card, collapsible, input, kbd,
                      separator, tooltip + custom tag, icon-tile

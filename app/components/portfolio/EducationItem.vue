@@ -13,6 +13,7 @@ withDefaults(defineProps<Education & { defaultOpen?: boolean, last?: boolean }>(
     <PositionItem
       :title="school"
       icon="graduation-cap"
+      heading-level="h3"
       :start="start"
       :end="end"
       :detail="degree"

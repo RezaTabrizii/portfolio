@@ -6,7 +6,7 @@ export default {
     description: '.NET ve Vue ile üretim sistemlerini uçtan uca geliştirmede 3 yılı aşkın deneyime sahip full-stack geliştirici. Tebriz, İran merkezli — uzaktan çalışmaya açık.',
   },
   name: 'Reza Tabrizi',
-  avatarAlt: 'RT monogramı',
+  avatarAlt: 'Reza Tabrizi\'nin portresi',
   jobTitle: 'Full-Stack Geliştirici',
   tagline: 'Full-Stack · .NET & Vue',
   headline: 'Full-Stack Geliştirici — .NET & Vue',

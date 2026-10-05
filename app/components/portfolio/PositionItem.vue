@@ -21,8 +21,11 @@ const props = withDefaults(defineProps<{
   defaultOpen?: boolean
   /** Draws the rounded end-cap of the timeline rail. */
   last?: boolean
+  /** One level below the enclosing section heading. */
+  headingLevel?: 'h3' | 'h4'
 }>(), {
   icon: 'code-xml',
+  headingLevel: 'h4',
   skills: () => [],
 })
 
@@ -55,9 +58,12 @@ const buildDuration = computed(() => formatDuration(props.start, props.end))
           <IconTile>
             <component :is="icons[icon]" />
           </IconTile>
-          <h4 class="flex-1 font-medium text-balance">
+          <component
+            :is="headingLevel"
+            class="flex-1 font-medium text-balance"
+          >
             {{ title }}
-          </h4>
+          </component>
           <span
             v-if="!disabled"
             class="flex h-6 items-center text-muted-foreground"
