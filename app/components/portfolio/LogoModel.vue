@@ -3,8 +3,8 @@ import type { Group, Object3D, WebGLRenderer } from 'three'
 
 /**
  * Interactive 3D logo: drag (or arrow keys) to spin it freely on any axis, with inertia
- * and a slow idle spin. three.js is imported on mount so it stays out of the prerender
- * and the main bundle; the flat glyph shows until the model is ready.
+ * and a slow idle spin. three.js is imported on the first user interaction so it stays out of
+ * the prerender, the main bundle and the initial load; the flat glyph shows until the model is ready.
  */
 const props = withDefaults(defineProps<{
   lightSrc?: string
@@ -23,8 +23,26 @@ const dragging = ref(false)
 
 let cleanup: (() => void) | undefined
 
-onMounted(async () => {
-  const el = container.value!
+// Booting WebGL (renderer, environment map, shader compile) is a ~1s main-thread task on slow
+// devices, so it waits for the first interaction instead of competing with the initial load.
+const WAKE_EVENTS = ['pointermove', 'pointerdown', 'keydown', 'touchstart', 'wheel', 'scroll'] as const
+
+onMounted(() => {
+  const wake = () => {
+    stopWaiting()
+    init()
+  }
+  const stopWaiting = () => {
+    for (const type of WAKE_EVENTS) window.removeEventListener(type, wake)
+    cleanup = undefined
+  }
+  for (const type of WAKE_EVENTS) window.addEventListener(type, wake, { once: true, passive: true })
+  cleanup = stopWaiting
+})
+
+async function init() {
+  const el = container.value
+  if (!el) return
   const THREE = await import('three')
   const [{ GLTFLoader }, { RoomEnvironment }] = await Promise.all([
     import('three/examples/jsm/loaders/GLTFLoader.js'),
@@ -204,7 +222,7 @@ onMounted(async () => {
     renderer.dispose()
     renderer.domElement.remove()
   }
-})
+}
 
 onBeforeUnmount(() => cleanup?.())
 </script>
