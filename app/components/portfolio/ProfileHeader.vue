@@ -1,16 +1,14 @@
 <script setup lang="ts">
-/** Profile hero: avatar column, "Fig. 1." figure (slot), name row + flipping tagline. */
+/** Profile hero: avatar column, figure (slot), name row + flipping tagline. */
 withDefaults(defineProps<{
   name: string
   avatarSrc?: string
   avatarAlt?: string
   sentences?: string[]
   verified?: boolean
-  caption?: string
 }>(), {
   avatarAlt: '',
   sentences: () => [],
-  caption: 'Fig. 1.',
 })
 </script>
 
@@ -18,9 +16,6 @@ withDefaults(defineProps<{
   <div class="grid grid-cols-[auto_minmax(0,1fr)] grid-rows-[1fr_auto] overflow-y-clip border-x screen-line-bottom screen-line-bottom-border">
     <figure class="relative col-start-2 row-start-1 m-0 hidden min-h-0 p-4 sm:block">
       <slot name="figure" />
-      <figcaption class="pointer-events-none absolute right-4 bottom-4 font-mono text-sm leading-none tracking-wide text-[color-mix(in_oklab,var(--muted-foreground)_60%,var(--background))] tabular-nums select-none">
-        {{ caption }}
-      </figcaption>
     </figure>
 
     <div class="col-start-1 row-span-2 row-start-1 flex flex-col">

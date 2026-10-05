@@ -32,14 +32,8 @@ useHead({
       :sentences="P.sentences"
     >
       <template #figure>
-        <div class="absolute inset-0 flex items-center justify-center dot-grid">
-          <!-- <img
-            src="/logo-glyph.png"
-            alt=""
-            width="56"
-            height="56"
-            class="w-14 opacity-85 mix-blend-multiply dark:mix-blend-screen dark:invert"
-          > -->
+        <div class="absolute inset-0 dot-grid">
+          <LogoModel />
         </div>
       </template>
     </ProfileHeader>
