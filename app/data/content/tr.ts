@@ -134,13 +134,4 @@ export default {
       degree: 'Lise Diploması, Matematik ve Fizik',
     },
   },
-  footer: {
-    craftedBy: 'Hazırlayan',
-    basedIn: 'Konum',
-    availability: 'Uygunluk',
-    availabilityValue: 'Uzaktan çalışmaya açık',
-    typeface: 'Yazı tipi',
-    stack: 'Teknolojiler',
-    languages: 'Diller',
-  },
 } satisfies PortfolioCopy

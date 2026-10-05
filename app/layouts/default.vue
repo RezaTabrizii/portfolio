@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CV, GITHUB_URL, NAV } from '~/data/portfolio'
+import { CV, GITHUB_URL, NAV, SOURCE_URL } from '~/data/portfolio'
 
 const { t } = useI18n()
 const P = usePortfolio()
@@ -28,45 +28,50 @@ const isDev = import.meta.dev
 
 <!-- `isolate` gives the full-bleed hairlines (z-index:-1 pseudo-elements) a stacking context. -->
 <template>
-  <div class="relative isolate">
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:inset-s-2 focus:top-2 focus:z-[60] focus:rounded-lg focus:bg-foreground focus:px-3 focus:py-2 focus:text-sm focus:text-background"
-    >{{ t('skipToContent') }}</a>
+  <SiteContextMenu
+    :cv-href="CV.href"
+    :cv-file-name="CV.fileName"
+    :source-href="SOURCE_URL"
+  >
+    <div class="relative isolate">
+      <a
+        href="#main"
+        class="sr-only focus:not-sr-only focus:fixed focus:inset-s-2 focus:top-2 focus:z-[60] focus:rounded-lg focus:bg-foreground focus:px-3 focus:py-2 focus:text-sm focus:text-background"
+      >{{ t('skipToContent') }}</a>
 
-    <SiteLoader
-      :title="P.name"
-      :subtitle="P.tagline"
-      :loading-label="t('loader.loading')"
-      :once-per-session="!isDev"
-    />
+      <SiteLoader
+        :title="P.name"
+        :subtitle="P.tagline"
+        :loading-label="t('loader.loading')"
+        :once-per-session="!isDev"
+      />
 
-    <ClientOnly>
-      <CustomCursor />
-    </ClientOnly>
+      <ClientOnly>
+        <CustomCursor />
+      </ClientOnly>
 
-    <SiteHeader
-      :nav="nav"
-      :logo-alt="t('header.home', { name: P.name })"
-      :github-href="GITHUB_URL"
-      :cv-href="CV.href"
-      :cv-file-name="CV.fileName"
-    />
+      <SiteHeader
+        :nav="nav"
+        :logo-alt="t('header.home', { name: P.name })"
+        :github-href="GITHUB_URL"
+        :cv-href="CV.href"
+        :cv-file-name="CV.fileName"
+      />
 
-    <main
-      id="main"
-      class="max-w-screen overflow-x-clip px-(--page-gutter)"
-    >
-      <slot />
-    </main>
+      <main
+        id="main"
+        class="max-w-screen overflow-x-clip px-(--page-gutter)"
+      >
+        <slot />
+      </main>
 
-    <SiteFooter
-      :title="P.name"
-      :subtitle="P.headline"
-      :fields="P.footerFields"
-      :socials="P.socials"
-    />
+      <SiteFooter
+        :title="P.name"
+        :subtitle="P.headline"
+        :socials="P.socials"
+      />
 
-    <BottomFade />
-  </div>
+      <BottomFade />
+    </div>
+  </SiteContextMenu>
 </template>

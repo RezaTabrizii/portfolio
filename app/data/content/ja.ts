@@ -134,13 +134,4 @@ export default {
       degree: '高校卒業資格（数学・物理専攻）',
     },
   },
-  footer: {
-    craftedBy: '制作',
-    basedIn: '拠点',
-    availability: '稼働状況',
-    availabilityValue: 'リモート可',
-    typeface: '書体',
-    stack: 'スタック',
-    languages: '言語',
-  },
 } satisfies PortfolioCopy

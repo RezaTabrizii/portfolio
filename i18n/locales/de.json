@@ -32,6 +32,7 @@
   "period": { "present": "Heute" },
   "project": { "open": "Projekt öffnen" },
   "loader": { "loading": "Lädt" },
+  "contextMenu": { "copy": "Kopieren", "openInNewTab": "Link in neuem Tab öffnen", "copyLinkAddress": "Linkadresse kopieren", "copyPageLink": "Seitenlink kopieren", "backToTop": "Nach oben", "language": "Sprache", "viewSource": "Quellcode auf GitHub ansehen", "nativeHint": "Umschalt + Rechtsklick für das Browsermenü" },
   "notes": { "followMe": "folge mir", "buildTogether": "lass uns\nzusammen bauen" },
   "footer": { "home": "Startseite" },
   "duration": { "years": "{n} J.", "months": "{n} Mon.", "separator": " " }

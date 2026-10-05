@@ -1,6 +1,6 @@
 <!--
-  CAD cursor: 5px square dot, 28px corner-bracket reticle that trails and snaps around
-  links/buttons, viewport crosshair hairlines and a mono X/Y readout.
+  CAD cursor: 5px square dot and a 28px corner-bracket reticle that trails and snaps around
+  links/buttons, with a mono label naming the hovered target.
   Styles: app/assets/css/cursor.css. Mount once inside <ClientOnly>.
   Targets: data-cursor (extra interactive), data-cursor-label="…" (readout text),
   data-cursor="text" (force I-beam). Disabled on coarse pointers; no lag with reduced motion.
@@ -9,24 +9,20 @@
 import { onBeforeUnmount, onMounted, useTemplateRef } from 'vue'
 
 const props = withDefaults(defineProps<{
-  crosshair?: boolean
   coords?: boolean
   snap?: boolean
   size?: number
   bracket?: number
   padding?: number
   smoothing?: number
-}>(), { crosshair: true, coords: true, snap: true, size: 28, bracket: 8, padding: 4, smoothing: 0.2 })
+}>(), { coords: true, snap: true, size: 28, bracket: 8, padding: 4, smoothing: 0.2 })
 
 const INTERACTIVE = 'a,button,[role="button"],summary,label,select,[data-cursor]'
 const TEXTY = 'input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=range]),textarea,[contenteditable="true"],[data-cursor="text"]'
-// const pad4 = (n: number) => String(Math.max(0, Math.round(n))).padStart(4, '0')
 
 const root = useTemplateRef<HTMLDivElement>('root')
 const dot = useTemplateRef<HTMLDivElement>('dot')
 const box = useTemplateRef<HTMLDivElement>('box')
-// const lineH = useTemplateRef<HTMLDivElement>('lineH')
-// const lineV = useTemplateRef<HTMLDivElement>('lineV')
 const label = useTemplateRef<HTMLDivElement>('label')
 
 let cleanup: (() => void) | undefined
@@ -35,7 +31,7 @@ onMounted(() => {
   const el = root.value
   if (!el || !window.matchMedia('(pointer: fine)').matches) return
 
-  const k = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : props.smoothing
+  const k = prefersReducedMotion() ? 1 : props.smoothing
   document.documentElement.classList.add('rt-cursor-on')
 
   let mx = -100
@@ -104,15 +100,10 @@ onMounted(() => {
       b.style.setProperty('--b', `${Math.min(props.bracket + (bw - props.size) * 0.08, bw / 2, bh / 2)}px`)
     }
     if (dot.value) dot.value.style.transform = `translate3d(${mx}px,${my}px,0)`
-    // Crosshair hairlines disabled
-    // if (lineH.value && lineV.value) {
-    //   lineH.value.style.transform = `translate3d(0,${my}px,0)`
-    //   lineV.value.style.transform = `translate3d(${mx}px,0,0)`
-    // }
     if (label.value) {
       label.value.textContent = hovering
         ? (target!.getAttribute('data-cursor-label') || target!.getAttribute('aria-label') || '')
-        : '' // X/Y readout disabled: `X ${pad4(mx)}  Y ${pad4(my)}`
+        : ''
       const lw = label.value.offsetWidth
       const lh = label.value.offsetHeight
       const vw = window.innerWidth
@@ -155,18 +146,6 @@ onBeforeUnmount(() => cleanup?.())
     data-state="idle"
     aria-hidden="true"
   >
-    <!-- Crosshair hairlines disabled
-    <template v-if="crosshair">
-      <div
-        ref="lineH"
-        class="rt-cursor__line-h"
-      />
-      <div
-        ref="lineV"
-        class="rt-cursor__line-v"
-      />
-    </template>
-    -->
     <div
       ref="box"
       class="rt-cursor__box"

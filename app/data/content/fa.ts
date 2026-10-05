@@ -134,13 +134,4 @@ export default {
       degree: 'دیپلم ریاضی و فیزیک',
     },
   },
-  footer: {
-    craftedBy: 'ساخته‌شده توسط',
-    basedIn: 'محل سکونت',
-    availability: 'وضعیت همکاری',
-    availabilityValue: 'آماده دورکاری',
-    typeface: 'قلم',
-    stack: 'استک',
-    languages: 'زبان‌ها',
-  },
 } satisfies PortfolioCopy

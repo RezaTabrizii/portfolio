@@ -134,13 +134,4 @@ export default {
       degree: 'Abitur, Schwerpunkt Mathematik & Physik',
     },
   },
-  footer: {
-    craftedBy: 'Gestaltet von',
-    basedIn: 'Standort',
-    availability: 'Verfügbarkeit',
-    availabilityValue: 'Offen für Remote',
-    typeface: 'Schriftart',
-    stack: 'Stack',
-    languages: 'Sprachen',
-  },
 } satisfies PortfolioCopy

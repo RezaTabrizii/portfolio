@@ -8,12 +8,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { icons } from '~/lib/icons'
 
 /** Full-width collapsible project row; dashed guide after the icon gutter. */
-const { t } = useI18n()
-
 withDefaults(defineProps<Project>(), {
   icon: 'box',
   skills: () => [],
 })
+
+const { t } = useI18n()
 </script>
 
 <template>

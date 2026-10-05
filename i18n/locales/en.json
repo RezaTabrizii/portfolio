@@ -32,6 +32,7 @@
   "period": { "present": "Present" },
   "project": { "open": "Open project" },
   "loader": { "loading": "Loading" },
+  "contextMenu": { "copy": "Copy", "openInNewTab": "Open link in new tab", "copyLinkAddress": "Copy link address", "copyPageLink": "Copy page link", "backToTop": "Back to top", "language": "Language", "viewSource": "View source on GitHub", "nativeHint": "Shift + right-click for the browser menu" },
   "notes": { "followMe": "follow me", "buildTogether": "let's build\ntogether" },
   "footer": { "home": "Home" },
   "duration": { "years": "{n}y", "months": "{n}m", "separator": " " }

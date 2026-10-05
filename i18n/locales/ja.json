@@ -32,6 +32,7 @@
   "period": { "present": "現在" },
   "project": { "open": "プロジェクトを開く" },
   "loader": { "loading": "読み込み中" },
+  "contextMenu": { "copy": "コピー", "openInNewTab": "リンクを新しいタブで開く", "copyLinkAddress": "リンクのアドレスをコピー", "copyPageLink": "ページのリンクをコピー", "backToTop": "トップへ戻る", "language": "言語", "viewSource": "GitHub でソースを見る", "nativeHint": "Shift + 右クリックでブラウザのメニュー" },
   "notes": { "followMe": "フォローしてね", "buildTogether": "一緒に\nつくろう" },
   "footer": { "home": "ホーム" },
   "duration": { "years": "{n}年", "months": "{n}か月", "separator": " " }

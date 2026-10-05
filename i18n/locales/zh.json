@@ -32,6 +32,7 @@
   "period": { "present": "至今" },
   "project": { "open": "打开项目" },
   "loader": { "loading": "加载中" },
+  "contextMenu": { "copy": "复制", "openInNewTab": "在新标签页中打开链接", "copyLinkAddress": "复制链接地址", "copyPageLink": "复制页面链接", "backToTop": "返回顶部", "language": "语言", "viewSource": "在 GitHub 上查看源代码", "nativeHint": "Shift + 右键打开浏览器菜单" },
   "notes": { "followMe": "关注我", "buildTogether": "一起\n来构建吧" },
   "footer": { "home": "首页" },
   "duration": { "years": "{n}年", "months": "{n}个月", "separator": " " }

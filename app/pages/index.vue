@@ -6,6 +6,7 @@ const { t } = useI18n()
 const P = usePortfolio()
 
 const mailto = computed(() => `mailto:${P.value.email}`)
+const tel = computed(() => `tel:${P.value.phone.replace(/\s+/g, '')}`)
 const collaborationMailto = computed(() => `${mailto.value}?subject=${encodeURIComponent(P.value.contributing.ctaSubject)}`)
 
 useHead(() => ({
@@ -17,7 +18,7 @@ useHead(() => ({
       '@type': 'Person',
       'name': P.value.name,
       'jobTitle': P.value.jobTitle,
-      'email': `mailto:${P.value.email}`,
+      'email': mailto.value,
       'address': { '@type': 'PostalAddress', 'addressLocality': P.value.city, 'addressCountry': 'IR' },
       'sameAs': P.value.socials.filter(s => s.href.startsWith('http')).map(s => s.href),
       'knowsAbout': P.value.stack.flatMap(g => g.items),
@@ -88,7 +89,7 @@ useHead(() => ({
         </IntroItem>
         <IntroItem
           icon="phone"
-          :href="`tel:${P.phone.replace(/\s+/g, '')}`"
+          :href="tel"
         >
           <span dir="ltr">{{ P.phone }}</span>
         </IntroItem>

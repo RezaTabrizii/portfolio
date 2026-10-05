@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { onClickOutside, onKeyStroke, useMediaQuery } from '@vueuse/core'
 import { FileDown, Github, Menu, X } from 'lucide-vue-next'
 import type { NavItem } from '~/types/portfolio'
 import { buttonVariants } from '@/components/ui/button'
@@ -6,7 +7,7 @@ import { Separator } from '@/components/ui/separator'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 /** Sticky 56px header on the rail: mark · nav · GitHub · Download CV · theme toggle. */
-const props = defineProps<{
+defineProps<{
   nav: NavItem[]
   logoAlt?: string
   githubHref?: string
@@ -19,13 +20,9 @@ const route = useRoute()
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-function scrollToTop() {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' })
-}
-
 const menuOpen = ref(false)
 const headerEl = useTemplateRef<HTMLElement>('headerEl')
+const isDesktop = useMediaQuery('(min-width: 48rem)')
 
 function closeMenu() {
   menuOpen.value = false
@@ -35,25 +32,11 @@ function isActive(href: string) {
   return route.hash === href
 }
 
+// Dismiss on navigation, Escape, outside click, or when growing past the md breakpoint.
 watch(() => route.fullPath, closeMenu)
-
-// Dismiss on Escape, outside click, or when growing past the md breakpoint.
-onMounted(() => {
-  const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeMenu()
-  const onPointer = (e: PointerEvent) => {
-    if (menuOpen.value && headerEl.value && !headerEl.value.contains(e.target as Node)) closeMenu()
-  }
-  const mq = window.matchMedia('(min-width: 48rem)')
-  const onMq = () => mq.matches && closeMenu()
-  window.addEventListener('keydown', onKey)
-  mq.addEventListener('change', onMq)
-  window.addEventListener('pointerdown', onPointer)
-  onBeforeUnmount(() => {
-    window.removeEventListener('keydown', onKey)
-    mq.removeEventListener('change', onMq)
-    window.removeEventListener('pointerdown', onPointer)
-  })
-})
+watch(isDesktop, desktop => desktop && closeMenu())
+onKeyStroke('Escape', closeMenu)
+onClickOutside(headerEl, closeMenu)
 
 const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
 </script>
@@ -70,7 +53,7 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
         class="flex mt-1"
         @click="scrollToTop"
       >
-        <!-- logo-glyph.png has an opaque white background: multiply on light, invert + screen on dark. -->
+        <!-- Black glyph: multiply on light, invert + screen on dark. -->
         <img
           src="/rt-symbol-black.svg"
           alt=""
@@ -90,7 +73,7 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
           v-for="item in nav"
           :key="item.href"
           :to="item.href"
-          :aria-current="route.hash === item.href ? 'location' : undefined"
+          :aria-current="isActive(item.href) ? 'location' : undefined"
           class="text-sm/normal font-medium tracking-wide text-muted-foreground transition-colors duration-150 hover:text-foreground aria-[current]:text-foreground"
         >
           {{ item.title }}
@@ -146,7 +129,7 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
         <ThemeToggle />
 
         <button
-          v-if="props.nav.length"
+          v-if="nav.length"
           type="button"
           :aria-label="menuOpen ? t('header.closeMenu') : t('header.openMenu')"
           :aria-expanded="menuOpen"

@@ -6,6 +6,7 @@ import type {
   Portfolio,
   PortfolioCopy,
   Position,
+  Project,
   ProjectId,
   StackId,
 } from '~/types/portfolio'
@@ -13,8 +14,12 @@ import type {
 // Copy sourced from the full CV (Reza_Tabrizi_CV_Full_Version.md). Translatable text lives in
 // `~/data/content/<locale>.ts`; this file holds what is the same in every language.
 
-export const GITHUB_URL = 'https://github.com/RezaTabrizii'
-export const LINKEDIN_URL = 'https://linkedin.com/in/tabrizi-me'
+const GITHUB_HANDLE = 'RezaTabrizii'
+const LINKEDIN_HANDLE = 'tabrizi-me'
+
+export const GITHUB_URL = `https://github.com/${GITHUB_HANDLE}`
+export const SOURCE_URL = `${GITHUB_URL}/portfolio`
+export const LINKEDIN_URL = `https://linkedin.com/in/${LINKEDIN_HANDLE}`
 export const EMAIL = 'smr.tabrizi@gmail.com'
 export const PHONE = '+98 992 348 0125'
 
@@ -82,9 +87,11 @@ const EXPERIENCE: ExperienceBase[] = [
 
 const AI_SKILLS = ['Claude Code', 'Agentic coding', 'Context engineering', 'Code review']
 
-const JALALI_REPO = 'https://github.com/RezaTabrizii/vue-jalali-datetime-picker'
+const JALALI_REPO = `${GITHUB_URL}/vue-jalali-datetime-picker`
 
-const PROJECTS: { id: ProjectId, title: string, icon: IconName, link?: string, links?: { title: string, href: string }[], defaultOpen?: boolean, skills: string[] }[] = [
+type ProjectBase = Pick<Project, 'title' | 'link' | 'links' | 'defaultOpen' | 'skills'> & { id: ProjectId, icon: IconName }
+
+const PROJECTS: ProjectBase[] = [
   {
     id: 'jalali-picker',
     title: 'vue-jalali-datetime-picker',
@@ -130,8 +137,8 @@ export function buildPortfolio(c: PortfolioCopy): Portfolio {
     languages: c.languages,
     currentRole: { title: isbis.title, company: 'ISBIS', anchor: '#experience-isbis' },
     socials: [
-      { title: 'GitHub', handle: 'RezaTabrizii', href: GITHUB_URL, icon: 'github' },
-      { title: 'LinkedIn', handle: 'tabrizi-me', href: LINKEDIN_URL, icon: 'linkedin' },
+      { title: 'GitHub', handle: GITHUB_HANDLE, href: GITHUB_URL, icon: 'github' },
+      { title: 'LinkedIn', handle: LINKEDIN_HANDLE, href: LINKEDIN_URL, icon: 'linkedin' },
       { title: c.emailLabel, handle: EMAIL, href: `mailto:${EMAIL}`, icon: 'mail' },
     ],
     summary: c.summary,
@@ -152,13 +159,5 @@ export function buildPortfolio(c: PortfolioCopy): Portfolio {
     }),
     contributing: c.contributing,
     education: EDUCATION.map(({ id, ...e }) => ({ ...e, ...c.education[id] })),
-    footerFields: [
-      { label: c.footer.craftedBy, value: 'RezaTabrizii', href: GITHUB_URL },
-      { label: c.footer.basedIn, value: c.location },
-      { label: c.footer.availability, value: c.footer.availabilityValue },
-      { label: c.footer.typeface, value: 'Geist' },
-      { label: c.footer.stack, span: 2, value: ['Nuxt.js', 'shadcn-vue', 'Tailwind CSS'] },
-      { label: c.footer.languages, span: 2, value: c.languages.join(' · ') },
-    ],
   }
 }

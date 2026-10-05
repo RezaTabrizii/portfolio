@@ -62,9 +62,8 @@ onMounted(async () => {
     catch { /* storage blocked: show it every time */ }
   }
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   // performance.now() counts from navigation start, so time spent before hydration counts too.
-  const remaining = Math.max(0, (reduced ? 0 : props.minDuration) - performance.now())
+  const remaining = Math.max(0, (prefersReducedMotion() ? 0 : props.minDuration) - performance.now())
   await Promise.race([
     Promise.all([windowLoaded(), document.fonts?.ready, wait(remaining)]),
     wait(props.maxDuration),

@@ -1,4 +1,5 @@
 import type { RouterConfig } from '@nuxt/schema'
+import { prefersReducedMotion } from '~/utils/dom'
 
 function scrollMarginTop(selector: string): number {
   try {
@@ -15,7 +16,7 @@ function scrollMarginTop(selector: string): number {
 export default {
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition
-    const behavior: ScrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    const behavior: ScrollBehavior = prefersReducedMotion() ? 'auto' : 'smooth'
     if (to.hash) return { el: to.hash, top: scrollMarginTop(to.hash), behavior }
     if (to.path === from.path) return { top: 0, behavior }
     return { top: 0 }

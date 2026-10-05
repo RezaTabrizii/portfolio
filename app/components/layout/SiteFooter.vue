@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FooterField, SocialLink } from '~/types/portfolio'
+import type { SocialLink } from '~/types/portfolio'
 import { Separator } from '@/components/ui/separator'
 import { icons } from '~/lib/icons'
 
@@ -7,20 +7,11 @@ import { icons } from '~/lib/icons'
 defineProps<{
   title: string
   subtitle?: string
-  fields?: FooterField[]
   socials?: SocialLink[]
 }>()
 
-const span = {
-  1: 'col-span-1',
-  2: 'col-span-2',
-  4: 'col-span-2 sm:col-span-4',
-} as const
-
 const { t } = useI18n()
 const localePath = useLocalePath()
-
-const isExternal = (href: string) => /^https?:\/\//.test(href)
 </script>
 
 <template>
@@ -40,45 +31,6 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
           class="font-sans text-muted-foreground"
         >{{ subtitle }}</span>
       </div>
-
-      <!-- <dl
-        v-if="fields?.length"
-        class="grid grid-cols-2 gap-px bg-line font-mono sm:grid-cols-4"
-      >
-        <div
-          v-for="field in fields"
-          :key="field.label"
-          :class="['flex min-w-0 flex-col gap-1 bg-background px-4 py-3', span[field.span ?? 1]]"
-        >
-          <dt class="text-2xs font-medium tracking-wider text-muted-foreground uppercase">
-            {{ field.label }}
-          </dt>
-          <dd class="text-sm/normal">
-            <ul
-              v-if="Array.isArray(field.value)"
-              class="flex flex-col gap-0.5"
-            >
-              <li
-                v-for="line in field.value"
-                :key="line"
-              >
-                {{ line }}
-              </li>
-            </ul>
-            <a
-              v-else-if="field.href"
-              class="link-underline"
-              :href="field.href"
-              v-bind="isExternal(field.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {}"
-            >{{ field.value }}</a>
-            <template v-else>
-              {{ field.value }}
-            </template>
-          </dd>
-        </div>
-      </dl> -->
-
-      <!-- <div class="h-4 screen-line-top" /> -->
 
       <div class="flex items-center gap-3 px-4 py-3 text-muted-foreground screen-line-top screen-line-bottom screen-line-bottom-border">
         <NuxtLink
@@ -107,7 +59,7 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
             :href="social.href"
             :aria-label="social.title"
             class="flex transition-colors duration-150 hover:text-foreground"
-            v-bind="isExternal(social.href) ? { target: '_blank', rel: 'noopener noreferrer' } : {}"
+            v-bind="externalLinkAttrs(social.href)"
           >
             <component
               :is="icons[social.icon]"
@@ -117,6 +69,5 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
         </template>
       </div>
     </div>
-    <!-- <div class="h-(--fade-bottom-height)" /> -->
   </footer>
 </template>

@@ -32,6 +32,7 @@
   "period": { "present": "تاکنون" },
   "project": { "open": "باز کردن پروژه" },
   "loader": { "loading": "در حال بارگذاری" },
+  "contextMenu": { "copy": "کپی", "openInNewTab": "باز کردن پیوند در زبانه جدید", "copyLinkAddress": "کپی نشانی پیوند", "copyPageLink": "کپی پیوند صفحه", "backToTop": "بازگشت به بالا", "language": "زبان", "viewSource": "مشاهده کد منبع در گیت‌هاب", "nativeHint": "برای منوی مرورگر Shift + کلیک راست" },
   "notes": { "followMe": "دنبالم کن", "buildTogether": "بیا با هم\nبسازیم" },
   "footer": { "home": "خانه" },
   "duration": { "years": "{n} سال", "months": "{n} ماه", "separator": " و " }

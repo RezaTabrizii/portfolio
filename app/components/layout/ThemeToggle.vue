@@ -4,22 +4,13 @@ import { buttonVariants } from '@/components/ui/button'
 import { Kbd } from '@/components/ui/kbd'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
-const colorMode = useColorMode()
 const { t } = useI18n()
-
-function toggle() {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-}
-
-function isTypingTarget(target: EventTarget | null) {
-  return target instanceof HTMLElement
-    && (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName))
-}
+const toggle = useThemeToggle()
 
 // "D" toggles the theme (same shortcut as the source site). Ignore modified keys so ⌘D / Ctrl+D still bookmark.
 useEventListener('keydown', (e: KeyboardEvent) => {
   if (e.key.toLowerCase() !== 'd' || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return
-  if (isTypingTarget(e.target)) return
+  if (isEditableTarget(e.target)) return
   toggle()
 })
 </script>

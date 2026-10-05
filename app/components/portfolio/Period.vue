@@ -2,12 +2,12 @@
 import { Infinity as InfinityIcon } from 'lucide-vue-next'
 
 /** `start — end` in the meta row; a missing `end` renders the infinity glyph ("Present"). */
-const { t } = useI18n()
-
 defineProps<{
   start: string
   end?: string
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>

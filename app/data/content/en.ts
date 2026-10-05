@@ -134,13 +134,4 @@ export default {
       degree: 'Diploma, Mathematics & Physics',
     },
   },
-  footer: {
-    craftedBy: 'Crafted by',
-    basedIn: 'Based in',
-    availability: 'Availability',
-    availabilityValue: 'Open to remote',
-    typeface: 'Typeface',
-    stack: 'Stack',
-    languages: 'Languages',
-  },
 } satisfies PortfolioCopy

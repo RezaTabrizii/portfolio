@@ -4,7 +4,7 @@ import { IconTile } from '@/components/ui/icon-tile'
 import { icons } from '~/lib/icons'
 
 /** Mono overview row: icon tile + text/link. Used in the 2-col grid under the profile header. */
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   icon?: IconName
   href?: string
   span?: 1 | 2
@@ -12,8 +12,6 @@ const props = withDefaults(defineProps<{
   icon: 'briefcase-business',
   span: 1,
 })
-
-const external = computed(() => !!props.href && /^https?:\/\//.test(props.href))
 </script>
 
 <template>
@@ -26,7 +24,7 @@ const external = computed(() => !!props.href && /^https?:\/\//.test(props.href))
         v-if="href"
         class="link"
         :href="href"
-        v-bind="external ? { target: '_blank', rel: 'noopener noreferrer' } : {}"
+        v-bind="externalLinkAttrs(href)"
       ><slot /></a>
       <slot v-else />
     </p>

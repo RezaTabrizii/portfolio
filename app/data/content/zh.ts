@@ -134,13 +134,4 @@ export default {
       degree: '高中文凭，数学与物理方向',
     },
   },
-  footer: {
-    craftedBy: '制作',
-    basedIn: '所在地',
-    availability: '工作状态',
-    availabilityValue: '可远程工作',
-    typeface: '字体',
-    stack: '技术栈',
-    languages: '语言',
-  },
 } satisfies PortfolioCopy

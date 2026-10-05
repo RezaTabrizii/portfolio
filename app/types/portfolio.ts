@@ -63,15 +63,6 @@ export interface Education {
   skills?: string[]
 }
 
-export interface FooterField {
-  label: string
-  /** Grid columns spanned on ≥sm (4-column grid). */
-  span?: 1 | 2 | 4
-  /** A list renders as stacked lines. */
-  value: string | string[]
-  href?: string
-}
-
 export interface NavItem {
   title: string
   href: `#${string}`
@@ -103,7 +94,6 @@ export interface Portfolio {
   projects: Project[]
   contributing: { title: string, paragraphs: string[], ctaLabel: string, ctaSubject: string }
   education: Education[]
-  footerFields: FooterField[]
 }
 
 export type StackId = 'languages' | 'backend' | 'frontend' | 'data' | 'devops' | 'practices'
@@ -140,13 +130,4 @@ export interface PortfolioCopy {
   projects: Record<ProjectId, { title?: string, period: string, description: string[] }>
   contributing: { title: string, paragraphs: string[], ctaLabel: string, ctaSubject: string }
   education: Record<EducationId, { school: string, degree: string, description?: string }>
-  footer: {
-    craftedBy: string
-    basedIn: string
-    availability: string
-    availabilityValue: string
-    typeface: string
-    stack: string
-    languages: string
-  }
 }

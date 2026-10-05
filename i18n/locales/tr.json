@@ -32,6 +32,7 @@
   "period": { "present": "Halen" },
   "project": { "open": "Projeyi aç" },
   "loader": { "loading": "Yükleniyor" },
+  "contextMenu": { "copy": "Kopyala", "openInNewTab": "Bağlantıyı yeni sekmede aç", "copyLinkAddress": "Bağlantı adresini kopyala", "copyPageLink": "Sayfa bağlantısını kopyala", "backToTop": "Başa dön", "language": "Dil", "viewSource": "Kaynağı GitHub'da görüntüle", "nativeHint": "Tarayıcı menüsü için Shift + sağ tık" },
   "notes": { "followMe": "beni takip et", "buildTogether": "birlikte\ngeliştirelim" },
   "footer": { "home": "Ana sayfa" },
   "duration": { "years": "{n} yıl", "months": "{n} ay", "separator": " " }

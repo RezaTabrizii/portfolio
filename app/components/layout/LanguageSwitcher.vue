@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from 'reka-ui'
 import { buttonVariants } from '@/components/ui/button'
+import { menuContentClass, menuItemClass } from '~/lib/menu'
 
 /** Header language menu: icon button → list of locales by native name, linking to the same page. */
 const { t, locale, locales } = useI18n()
@@ -28,7 +29,7 @@ const switchLocalePath = useSwitchLocalePath()
       <DropdownMenuContent
         align="end"
         :side-offset="8"
-        class="z-50 min-w-40 rounded-lg border bg-popover p-1 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95 duration-150 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95"
+        :class="[menuContentClass, 'min-w-40']"
       >
         <DropdownMenuItem
           v-for="item in locales"
@@ -40,12 +41,11 @@ const switchLocalePath = useSwitchLocalePath()
             :lang="item.language"
             :dir="item.dir ?? 'ltr'"
             :aria-current="item.code === locale ? 'true' : undefined"
-            class="flex cursor-pointer items-center gap-3 rounded-md px-2 py-1.5 text-sm outline-none select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground"
+            :class="menuItemClass"
           >
             <span class="flex-1">{{ item.name }}</span>
             <Check
               v-if="item.code === locale"
-              class="size-4 text-muted-foreground"
               aria-hidden="true"
             />
             <span
