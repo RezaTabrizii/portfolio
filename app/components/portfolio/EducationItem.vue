@@ -9,7 +9,7 @@ withDefaults(defineProps<Education & { defaultOpen?: boolean, last?: boolean }>(
 </script>
 
 <template>
-  <div class="relative before:absolute before:top-0 before:left-3 before:h-full before:w-px before:bg-border">
+  <div class="relative before:absolute before:top-0 before:inset-s-3 before:h-full before:w-px before:bg-border">
     <PositionItem
       :title="school"
       icon="graduation-cap"

@@ -1,0 +1,38 @@
+{
+  "skipToContent": "پرش به محتوا",
+  "nav": {
+    "about": "درباره",
+    "stack": "استک",
+    "experience": "سوابق",
+    "aiWorkflow": "هوش مصنوعی",
+    "projects": "پروژه‌ها",
+    "contributing": "مشارکت"
+  },
+  "section": {
+    "overview": "نمای کلی",
+    "about": "درباره من",
+    "stack": "استک فنی",
+    "experience": "سوابق کاری",
+    "aiWorkflow": "توسعه با کمک هوش مصنوعی",
+    "projects": "پروژه‌ها",
+    "education": "تحصیلات"
+  },
+  "header": {
+    "home": "{name} — خانه",
+    "sections": "بخش‌ها",
+    "downloadCv": "دانلود رزومه",
+    "openMenu": "باز کردن منو",
+    "closeMenu": "بستن منو",
+    "language": "تغییر زبان"
+  },
+  "theme": { "toggle": "تغییر حالت" },
+  "panel": { "copyLink": "کپی لینک این بخش", "linkCopied": "لینک کپی شد" },
+  "intro": { "at": "در" },
+  "experience": { "current": "موقعیت فعلی" },
+  "period": { "present": "تاکنون" },
+  "project": { "open": "باز کردن پروژه" },
+  "loader": { "loading": "در حال بارگذاری" },
+  "notes": { "followMe": "دنبالم کن", "buildTogether": "بیا با هم\nبسازیم" },
+  "footer": { "home": "خانه" },
+  "duration": { "years": "{n} سال", "months": "{n} ماه", "separator": " و " }
+}

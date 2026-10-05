@@ -17,6 +17,9 @@ const span = {
   4: 'col-span-2 sm:col-span-4',
 } as const
 
+const { t } = useI18n()
+const localePath = useLocalePath()
+
 const isExternal = (href: string) => /^https?:\/\//.test(href)
 </script>
 
@@ -79,9 +82,9 @@ const isExternal = (href: string) => /^https?:\/\//.test(href)
 
       <div class="flex items-center gap-3 px-4 py-3 text-muted-foreground screen-line-top screen-line-bottom screen-line-bottom-border">
         <NuxtLink
-          to="/"
-          aria-label="Home"
-          class="mr-auto flex"
+          :to="localePath('/')"
+          :aria-label="t('footer.home')"
+          class="me-auto flex"
         >
           <img
             src="/rt-symbol-black.svg"

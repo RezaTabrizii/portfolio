@@ -2,6 +2,8 @@
 import { Infinity as InfinityIcon } from 'lucide-vue-next'
 
 /** `start — end` in the meta row; a missing `end` renders the infinity glyph ("Present"). */
+const { t } = useI18n()
+
 defineProps<{
   start: string
   end?: string
@@ -19,7 +21,7 @@ defineProps<{
         :stroke-width="1.5"
         aria-hidden="true"
       />
-      <span class="sr-only">Present</span>
+      <span class="sr-only">{{ t('period.present') }}</span>
     </template>
   </dd>
 </template>

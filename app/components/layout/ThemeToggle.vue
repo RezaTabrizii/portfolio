@@ -5,6 +5,7 @@ import { Kbd } from '@/components/ui/kbd'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 const colorMode = useColorMode()
+const { t } = useI18n()
 
 function toggle() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
@@ -28,7 +29,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     <TooltipTrigger as-child>
       <button
         type="button"
-        aria-label="Toggle mode"
+        :aria-label="t('theme.toggle')"
         :class="buttonVariants({ variant: 'ghost', size: 'icon-sm', class: 'border-none' })"
         @click="toggle"
       >
@@ -47,7 +48,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
       </button>
     </TooltipTrigger>
     <TooltipContent side="bottom">
-      <span class="flex items-center gap-3">Toggle mode <Kbd>D</Kbd></span>
+      <span class="flex items-center gap-3">{{ t('theme.toggle') }} <Kbd>D</Kbd></span>
     </TooltipContent>
   </Tooltip>
 </template>

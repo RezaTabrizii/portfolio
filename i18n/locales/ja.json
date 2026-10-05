@@ -1,0 +1,38 @@
+{
+  "skipToContent": "本文へスキップ",
+  "nav": {
+    "about": "概要",
+    "stack": "スタック",
+    "experience": "経歴",
+    "aiWorkflow": "AI ワークフロー",
+    "projects": "プロジェクト",
+    "contributing": "コントリビュート"
+  },
+  "section": {
+    "overview": "概要",
+    "about": "自己紹介",
+    "stack": "技術スタック",
+    "experience": "職務経歴",
+    "aiWorkflow": "AI を活用した開発",
+    "projects": "プロジェクト",
+    "education": "学歴"
+  },
+  "header": {
+    "home": "{name} — ホーム",
+    "sections": "セクション",
+    "downloadCv": "履歴書をダウンロード",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "language": "言語を変更"
+  },
+  "theme": { "toggle": "テーマを切り替え" },
+  "panel": { "copyLink": "セクションへのリンクをコピー", "linkCopied": "リンクをコピーしました" },
+  "intro": { "at": "所属" },
+  "experience": { "current": "現職" },
+  "period": { "present": "現在" },
+  "project": { "open": "プロジェクトを開く" },
+  "loader": { "loading": "読み込み中" },
+  "notes": { "followMe": "フォローしてね", "buildTogether": "一緒に\nつくろう" },
+  "footer": { "home": "ホーム" },
+  "duration": { "years": "{n}年", "months": "{n}か月", "separator": " " }
+}

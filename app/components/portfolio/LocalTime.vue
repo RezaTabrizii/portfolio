@@ -7,7 +7,8 @@ const props = defineProps<{
   city: string
 }>()
 
-const formatter = computed(() => new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: props.timeZone }))
+const { locale } = useI18n()
+const formatter = computed(() => new Intl.DateTimeFormat(locale.value, { hour: 'numeric', minute: '2-digit', timeZone: props.timeZone }))
 const time = ref<string>()
 
 function update() {
@@ -15,6 +16,7 @@ function update() {
 }
 
 onMounted(update)
+watch(formatter, update)
 useIntervalFn(update, 15_000)
 </script>
 

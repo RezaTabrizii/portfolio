@@ -1,26 +1,29 @@
 <script setup lang="ts">
 import { Mail } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
-import { PORTFOLIO as P } from '~/data/portfolio'
 
-const mailto = `mailto:${P.email}`
-const collaborationMailto = `${mailto}?subject=${encodeURIComponent(P.contributing.ctaSubject)}`
+const { t } = useI18n()
+const P = usePortfolio()
 
-useHead({
+const mailto = computed(() => `mailto:${P.value.email}`)
+const collaborationMailto = computed(() => `${mailto.value}?subject=${encodeURIComponent(P.value.contributing.ctaSubject)}`)
+
+useHead(() => ({
   script: [{
+    key: 'ld-person',
     type: 'application/ld+json',
     innerHTML: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Person',
-      'name': P.name,
-      'jobTitle': 'Full-Stack Developer',
-      'email': `mailto:${P.email}`,
-      'address': { '@type': 'PostalAddress', 'addressLocality': 'Tabriz', 'addressCountry': 'IR' },
-      'sameAs': P.socials.filter(s => s.href.startsWith('http')).map(s => s.href),
-      'knowsAbout': P.stack.flatMap(g => g.items),
+      'name': P.value.name,
+      'jobTitle': P.value.jobTitle,
+      'email': `mailto:${P.value.email}`,
+      'address': { '@type': 'PostalAddress', 'addressLocality': P.value.city, 'addressCountry': 'IR' },
+      'sameAs': P.value.socials.filter(s => s.href.startsWith('http')).map(s => s.href),
+      'knowsAbout': P.value.stack.flatMap(g => g.items),
     }),
   }],
-})
+}))
 </script>
 
 <template>
@@ -44,17 +47,20 @@ useHead({
       <PanelContent>
         <SocialLinks :links="P.socials" />
       </PanelContent>
-      <div class="absolute -top-4 right-full mr-4 hidden w-20 flex-col items-end min-[1000px]:flex">
-        <HandwrittenNote>follow me</HandwrittenNote>
-        <HandwrittenArrow
-          :size="28"
-          style="transform: translateX(12px) scaleX(-1) rotate(-6deg)"
-        />
+      <div class="absolute -top-4 inset-e-full me-4 hidden w-20 flex-col items-end min-[1000px]:flex">
+        <HandwrittenNote>{{ t('notes.followMe') }}</HandwrittenNote>
+        <!-- Mirrored in RTL, where the note sits in the opposite gutter. -->
+        <div class="flex rtl:-scale-x-100">
+          <HandwrittenArrow
+            :size="28"
+            style="transform: translateX(12px) scaleX(-1) rotate(-6deg)"
+          />
+        </div>
       </div>
     </Panel>
 
     <section
-      aria-label="Overview"
+      :aria-label="t('section.overview')"
       class="relative border-x"
     >
       <PanelContent class="grid grid-cols-1 gap-x-4 gap-y-2.5 sm:grid-cols-2">
@@ -62,8 +68,8 @@ useHead({
           icon="code-xml"
           :span="2"
         >
-          {{ P.currentRole.title }} <span aria-label="at">@</span><NuxtLink
-            class="link ml-0.5 font-medium"
+          {{ P.currentRole.title }} <span :aria-label="t('intro.at')">@</span><NuxtLink
+            class="link ms-0.5 font-medium"
             :to="P.currentRole.anchor"
           >{{ P.currentRole.company }}</NuxtLink>
         </IntroItem>
@@ -78,13 +84,13 @@ useHead({
           icon="mail"
           :href="mailto"
         >
-          {{ P.email }}
+          <span dir="ltr">{{ P.email }}</span>
         </IntroItem>
         <IntroItem
           icon="phone"
           :href="`tel:${P.phone.replace(/\s+/g, '')}`"
         >
-          {{ P.phone }}
+          <span dir="ltr">{{ P.phone }}</span>
         </IntroItem>
         <IntroItem
           icon="languages"
@@ -100,7 +106,7 @@ useHead({
     <Panel id="about">
       <PanelHeader>
         <PanelTitle href="#about">
-          About
+          {{ t('section.about') }}
         </PanelTitle>
       </PanelHeader>
       <PanelContent>
@@ -115,7 +121,7 @@ useHead({
     <Panel id="stack">
       <PanelHeader>
         <PanelTitle href="#stack">
-          Stack
+          {{ t('section.stack') }}
         </PanelTitle>
       </PanelHeader>
       <TechStack :groups="P.stack" />
@@ -129,7 +135,7 @@ useHead({
           href="#experience"
           :sup="P.experience.length"
         >
-          Experience
+          {{ t('section.experience') }}
         </PanelTitle>
       </PanelHeader>
       <div class="px-4">
@@ -146,7 +152,7 @@ useHead({
     <Panel id="ai-workflow">
       <PanelHeader>
         <PanelTitle href="#ai-workflow">
-          AI-Assisted Development
+          {{ t('section.aiWorkflow') }}
         </PanelTitle>
       </PanelHeader>
       <PanelContent class="flex flex-col gap-4">
@@ -163,7 +169,7 @@ useHead({
           href="#projects"
           :sup="P.projects.length"
         >
-          Projects
+          {{ t('section.projects') }}
         </PanelTitle>
       </PanelHeader>
       <ProjectItem
@@ -196,20 +202,25 @@ useHead({
             variant="outline"
             size="sm"
             :href="collaborationMailto"
-            data-cursor-label="Email"
+            :data-cursor-label="P.emailLabel"
           >
             <Mail />{{ P.contributing.ctaLabel }}
           </Button>
         </div>
       </PanelContent>
-      <div class="absolute top-2 left-full ml-2 hidden w-16 flex-col items-start min-[1000px]:flex">
-        <HandwrittenNote :rotate="4">
-          let's build<br>together
+      <div class="absolute top-2 inset-s-full ms-2 hidden w-16 flex-col items-start min-[1000px]:flex">
+        <HandwrittenNote
+          :rotate="4"
+          class="whitespace-pre-line"
+        >
+          {{ t('notes.buildTogether') }}
         </HandwrittenNote>
-        <HandwrittenArrow
-          :size="24"
-          style="transform: translateX(-6px) rotate(6deg)"
-        />
+        <div class="flex rtl:-scale-x-100">
+          <HandwrittenArrow
+            :size="24"
+            style="transform: translateX(-6px) rotate(6deg)"
+          />
+        </div>
       </div>
     </Panel>
 
@@ -218,7 +229,7 @@ useHead({
     <Panel id="education">
       <PanelHeader>
         <PanelTitle href="#education">
-          Education
+          {{ t('section.education') }}
         </PanelTitle>
       </PanelHeader>
       <PanelContent class="flex flex-col gap-4">

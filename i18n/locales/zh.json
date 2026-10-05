@@ -1,0 +1,38 @@
+{
+  "skipToContent": "跳到正文",
+  "nav": {
+    "about": "关于",
+    "stack": "技术栈",
+    "experience": "经历",
+    "aiWorkflow": "AI 工作流",
+    "projects": "项目",
+    "contributing": "开源贡献"
+  },
+  "section": {
+    "overview": "概览",
+    "about": "关于我",
+    "stack": "技术栈",
+    "experience": "工作经历",
+    "aiWorkflow": "AI 辅助开发",
+    "projects": "项目",
+    "education": "教育背景"
+  },
+  "header": {
+    "home": "{name} — 首页",
+    "sections": "页面分区",
+    "downloadCv": "下载简历",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "language": "切换语言"
+  },
+  "theme": { "toggle": "切换主题" },
+  "panel": { "copyLink": "复制本节链接", "linkCopied": "链接已复制" },
+  "intro": { "at": "就职于" },
+  "experience": { "current": "当前职位" },
+  "period": { "present": "至今" },
+  "project": { "open": "打开项目" },
+  "loader": { "loading": "加载中" },
+  "notes": { "followMe": "关注我", "buildTogether": "一起\n来构建吧" },
+  "footer": { "home": "首页" },
+  "duration": { "years": "{n}年", "months": "{n}个月", "separator": " " }
+}

@@ -28,7 +28,8 @@ const props = withDefaults(defineProps<{
 
 const disabled = computed(() => !props.description || props.description.length === 0)
 // Ongoing roles are re-measured on the client so a prerendered page never shows a stale duration.
-const buildDuration = formatDuration(props.start, props.end)
+const formatDuration = useFormatDuration()
+const buildDuration = computed(() => formatDuration(props.start, props.end))
 </script>
 
 <template>
@@ -42,13 +43,13 @@ const buildDuration = formatDuration(props.start, props.end)
       <div
         v-if="last"
         aria-hidden="true"
-        class="pointer-events-none absolute bottom-0 left-3 size-4 bg-background"
+        class="pointer-events-none absolute bottom-0 inset-s-3 size-4 bg-background"
       >
-        <span class="block size-full -translate-y-[9px] rounded-bl-sm border-b border-l" />
+        <span class="block size-full -translate-y-[9px] rounded-es-sm border-b border-s" />
       </div>
 
       <CollapsibleTrigger
-        class="relative block w-full cursor-pointer text-left outline-none before:absolute before:-top-1 before:-right-1 before:-bottom-1.5 before:left-7 before:-z-1 before:rounded-lg before:transition-colors before:duration-150 before:ease-out hover:before:bg-accent-muted focus-visible:before:inset-ring-2 focus-visible:before:inset-ring-ring/50 data-disabled:cursor-default data-disabled:before:content-none"
+        class="relative block w-full cursor-pointer text-start outline-none before:absolute before:-top-1 before:-inset-e-1 before:-bottom-1.5 before:inset-s-7 before:-z-1 before:rounded-lg before:transition-colors before:duration-150 before:ease-out hover:before:bg-accent-muted focus-visible:before:inset-ring-2 focus-visible:before:inset-ring-ring/50 data-disabled:cursor-default data-disabled:before:content-none"
       >
         <div class="relative z-1 mb-1 flex items-start gap-3 text-base">
           <IconTile>
@@ -68,7 +69,7 @@ const buildDuration = formatDuration(props.start, props.end)
           </span>
         </div>
 
-        <dl class="flex flex-wrap items-center gap-x-2 pl-9 text-sm/normal text-muted-foreground tabular-nums">
+        <dl class="flex flex-wrap items-center gap-x-2 ps-9 text-sm/normal text-muted-foreground tabular-nums">
           <template v-if="employmentType">
             <dd>{{ employmentType }}</dd>
             <Separator
@@ -107,7 +108,7 @@ const buildDuration = formatDuration(props.start, props.end)
         v-if="!disabled"
         class="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
       >
-        <div class="pt-3 pb-1 pl-9">
+        <div class="pt-3 pb-1 ps-9">
           <Description :value="description!" />
         </div>
       </CollapsibleContent>
@@ -115,7 +116,7 @@ const buildDuration = formatDuration(props.start, props.end)
       <SkillTags
         v-if="skills.length"
         :skills="skills"
-        class="pt-3 pl-9"
+        class="pt-3 ps-9"
       />
     </div>
   </Collapsible>

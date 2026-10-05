@@ -1,5 +1,26 @@
 <script setup lang="ts">
-import { CV, FOOTER_FIELDS, FOOTER_SOCIALS, GITHUB_URL, NAV, PORTFOLIO } from '~/data/portfolio'
+import { CV, GITHUB_URL, NAV } from '~/data/portfolio'
+
+const { t } = useI18n()
+const P = usePortfolio()
+const nav = computed(() => NAV.map(item => ({ title: t(`nav.${item.key}`), href: item.href })))
+
+// <html lang/dir>, plus canonical, hreflang alternates and og:locale (those need `i18n.baseUrl`).
+const localeHead = useLocaleHead()
+const route = useRoute()
+const siteUrl = useRuntimeConfig().public.siteUrl
+useHead(() => ({
+  htmlAttrs: localeHead.value.htmlAttrs,
+  link: localeHead.value.link,
+  meta: localeHead.value.meta,
+}))
+useSeoMeta({
+  title: () => P.value.meta.title,
+  description: () => P.value.meta.description,
+  ogTitle: () => P.value.meta.title,
+  ogDescription: () => P.value.meta.description,
+  ogUrl: () => (siteUrl ? `${siteUrl}${route.path === '/' ? '' : route.path}` : undefined),
+})
 
 // Replay the loader on every refresh in dev; once per tab in production.
 const isDev = import.meta.dev
@@ -10,12 +31,13 @@ const isDev = import.meta.dev
   <div class="relative isolate">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-lg focus:bg-foreground focus:px-3 focus:py-2 focus:text-sm focus:text-background"
-    >Skip to content</a>
+      class="sr-only focus:not-sr-only focus:fixed focus:inset-s-2 focus:top-2 focus:z-[60] focus:rounded-lg focus:bg-foreground focus:px-3 focus:py-2 focus:text-sm focus:text-background"
+    >{{ t('skipToContent') }}</a>
 
     <SiteLoader
-      :title="PORTFOLIO.name"
-      subtitle="Full-Stack · .NET & Vue"
+      :title="P.name"
+      :subtitle="P.tagline"
+      :loading-label="t('loader.loading')"
       :once-per-session="!isDev"
     />
 
@@ -24,8 +46,8 @@ const isDev = import.meta.dev
     </ClientOnly>
 
     <SiteHeader
-      :nav="NAV"
-      :logo-alt="`${PORTFOLIO.name} — Home`"
+      :nav="nav"
+      :logo-alt="t('header.home', { name: P.name })"
       :github-href="GITHUB_URL"
       :cv-href="CV.href"
       :cv-file-name="CV.fileName"
@@ -39,10 +61,10 @@ const isDev = import.meta.dev
     </main>
 
     <SiteFooter
-      :title="PORTFOLIO.name"
-      subtitle="Full-Stack Developer — .NET & Vue"
-      :fields="FOOTER_FIELDS"
-      :socials="FOOTER_SOCIALS"
+      :title="P.name"
+      :subtitle="P.headline"
+      :fields="P.footerFields"
+      :socials="P.socials"
     />
 
     <BottomFade />

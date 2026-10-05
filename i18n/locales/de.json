@@ -1,0 +1,38 @@
+{
+  "skipToContent": "Zum Inhalt springen",
+  "nav": {
+    "about": "Über mich",
+    "stack": "Stack",
+    "experience": "Erfahrung",
+    "aiWorkflow": "KI-Workflow",
+    "projects": "Projekte",
+    "contributing": "Mitwirken"
+  },
+  "section": {
+    "overview": "Überblick",
+    "about": "Über mich",
+    "stack": "Stack",
+    "experience": "Erfahrung",
+    "aiWorkflow": "KI-gestützte Entwicklung",
+    "projects": "Projekte",
+    "education": "Ausbildung"
+  },
+  "header": {
+    "home": "{name} — Startseite",
+    "sections": "Abschnitte",
+    "downloadCv": "Lebenslauf herunterladen",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "language": "Sprache ändern"
+  },
+  "theme": { "toggle": "Modus wechseln" },
+  "panel": { "copyLink": "Link zum Abschnitt kopieren", "linkCopied": "Link kopiert" },
+  "intro": { "at": "bei" },
+  "experience": { "current": "Aktuelle Position" },
+  "period": { "present": "Heute" },
+  "project": { "open": "Projekt öffnen" },
+  "loader": { "loading": "Lädt" },
+  "notes": { "followMe": "folge mir", "buildTogether": "lass uns\nzusammen bauen" },
+  "footer": { "home": "Startseite" },
+  "duration": { "years": "{n} J.", "months": "{n} Mon.", "separator": " " }
+}

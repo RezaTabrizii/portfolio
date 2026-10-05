@@ -16,6 +16,8 @@ const props = defineProps<{
 }>()
 
 const route = useRoute()
+const { t } = useI18n()
+const localePath = useLocalePath()
 
 function scrollToTop() {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -61,10 +63,10 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
     ref="headerEl"
     class="sticky top-0 z-50 max-w-screen overflow-x-clip bg-background px-(--page-gutter)"
   >
-    <div class="mx-auto flex h-(--header-height) max-w-rail items-center gap-4 border-x pr-2 pl-4 screen-line-top screen-line-bottom screen-line-top-border screen-line-bottom-border">
+    <div class="mx-auto flex h-(--header-height) max-w-rail items-center gap-4 border-x pe-2 ps-4 screen-line-top screen-line-bottom screen-line-top-border screen-line-bottom-border">
       <NuxtLink
-        to="/"
-        :aria-label="logoAlt ?? 'Home'"
+        :to="localePath('/')"
+        :aria-label="logoAlt ?? t('footer.home')"
         class="flex mt-1"
         @click="scrollToTop"
       >
@@ -81,7 +83,7 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
       <div class="flex-1" />
 
       <nav
-        aria-label="Sections"
+        :aria-label="t('header.sections')"
         class="hidden items-center gap-3 md:flex lg:gap-4"
       >
         <NuxtLink
@@ -99,7 +101,7 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
         <template v-if="githubHref">
           <Separator
             orientation="vertical"
-            class="mr-2 data-[orientation=vertical]:h-5"
+            class="me-2 data-[orientation=vertical]:h-5"
           />
           <Tooltip>
             <TooltipTrigger as-child>
@@ -124,18 +126,19 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
             <a
               :href="cvHref"
               :download="cvFileName || ''"
-              aria-label="Download CV"
-              data-cursor-label="Download CV"
+              :aria-label="t('header.downloadCv')"
+              :data-cursor-label="t('header.downloadCv')"
               :class="iconButton"
             >
               <FileDown />
             </a>
           </TooltipTrigger>
           <TooltipContent side="bottom">
-            Download CV
+            {{ t('header.downloadCv') }}
           </TooltipContent>
         </Tooltip>
 
+        <LanguageSwitcher />
         <Separator
           orientation="vertical"
           class="mx-2 data-[orientation=vertical]:h-5"
@@ -145,10 +148,10 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
         <button
           v-if="props.nav.length"
           type="button"
-          :aria-label="menuOpen ? 'Close menu' : 'Open menu'"
+          :aria-label="menuOpen ? t('header.closeMenu') : t('header.openMenu')"
           :aria-expanded="menuOpen"
           aria-controls="mobile-nav"
-          :class="[iconButton, 'ml-1 md:hidden']"
+          :class="[iconButton, 'ms-1 md:hidden']"
           @click="menuOpen = !menuOpen"
         >
           <X v-if="menuOpen" />
@@ -167,14 +170,14 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
       <nav
         v-if="menuOpen"
         id="mobile-nav"
-        aria-label="Sections"
+        :aria-label="t('header.sections')"
         class="absolute inset-x-(--page-gutter) top-full mx-auto max-w-rail border-x border-b bg-background shadow-lg md:hidden"
       >
         <ul class="m-0 grid list-none grid-cols-2 p-0">
           <li
             v-for="item in nav"
             :key="item.href"
-            class="border-b border-line even:border-l [&:nth-last-child(-n+2):nth-child(odd)]:border-b-0 [&:last-child]:border-b-0 last:odd:col-span-2"
+            class="border-b border-line even:border-s [&:nth-last-child(-n+2):nth-child(odd)]:border-b-0 [&:last-child]:border-b-0 last:odd:col-span-2"
           >
             <NuxtLink
               :to="item.href"

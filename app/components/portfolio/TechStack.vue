@@ -9,16 +9,16 @@ defineProps<{ groups: StackGroup[] }>()
   <div class="relative">
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-y-0 left-48 -z-1 hidden w-px border-r border-dashed border-line sm:block"
+      class="pointer-events-none absolute inset-y-0 inset-s-48 -z-1 hidden w-px border-e border-dashed border-line sm:block"
     />
     <div
       v-for="(group, i) in groups"
       :key="group.category"
       class="grid grid-cols-1 items-start gap-y-2 border-b border-line py-4 last:border-b-0 sm:grid-cols-[192px_1fr]"
     >
-      <div class="pl-4 text-sm leading-6">
+      <div class="ps-4 text-sm leading-6">
         <span
-          class="mr-1.5 font-mono text-muted-foreground/80 select-none"
+          class="me-1.5 font-mono text-muted-foreground/80 select-none"
           aria-hidden="true"
         >{{ String(i + 1).padStart(2, '0') }}</span>
         {{ group.category }}

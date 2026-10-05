@@ -1,0 +1,38 @@
+{
+  "skipToContent": "Skip to content",
+  "nav": {
+    "about": "About",
+    "stack": "Stack",
+    "experience": "Experience",
+    "aiWorkflow": "AI Workflow",
+    "projects": "Projects",
+    "contributing": "Contributing"
+  },
+  "section": {
+    "overview": "Overview",
+    "about": "About",
+    "stack": "Stack",
+    "experience": "Experience",
+    "aiWorkflow": "AI-Assisted Development",
+    "projects": "Projects",
+    "education": "Education"
+  },
+  "header": {
+    "home": "{name} — Home",
+    "sections": "Sections",
+    "downloadCv": "Download CV",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Change language"
+  },
+  "theme": { "toggle": "Toggle mode" },
+  "panel": { "copyLink": "Copy link to section", "linkCopied": "Link copied" },
+  "intro": { "at": "at" },
+  "experience": { "current": "Current position" },
+  "period": { "present": "Present" },
+  "project": { "open": "Open project" },
+  "loader": { "loading": "Loading" },
+  "notes": { "followMe": "follow me", "buildTogether": "let's build\ntogether" },
+  "footer": { "home": "Home" },
+  "duration": { "years": "{n}y", "months": "{n}m", "separator": " " }
+}

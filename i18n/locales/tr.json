@@ -1,0 +1,38 @@
+{
+  "skipToContent": "İçeriğe geç",
+  "nav": {
+    "about": "Hakkımda",
+    "stack": "Teknolojiler",
+    "experience": "Deneyim",
+    "aiWorkflow": "Yapay Zekâ",
+    "projects": "Projeler",
+    "contributing": "Katkı"
+  },
+  "section": {
+    "overview": "Genel bakış",
+    "about": "Hakkımda",
+    "stack": "Teknolojiler",
+    "experience": "Deneyim",
+    "aiWorkflow": "Yapay Zekâ Destekli Geliştirme",
+    "projects": "Projeler",
+    "education": "Eğitim"
+  },
+  "header": {
+    "home": "{name} — Ana sayfa",
+    "sections": "Bölümler",
+    "downloadCv": "Özgeçmişi indir",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "language": "Dili değiştir"
+  },
+  "theme": { "toggle": "Temayı değiştir" },
+  "panel": { "copyLink": "Bölüm bağlantısını kopyala", "linkCopied": "Bağlantı kopyalandı" },
+  "intro": { "at": "şirketinde" },
+  "experience": { "current": "Mevcut pozisyon" },
+  "period": { "present": "Halen" },
+  "project": { "open": "Projeyi aç" },
+  "loader": { "loading": "Yükleniyor" },
+  "notes": { "followMe": "beni takip et", "buildTogether": "birlikte\ngeliştirelim" },
+  "footer": { "home": "Ana sayfa" },
+  "duration": { "years": "{n} yıl", "months": "{n} ay", "separator": " " }
+}

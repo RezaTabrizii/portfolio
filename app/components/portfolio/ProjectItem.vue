@@ -8,6 +8,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { icons } from '~/lib/icons'
 
 /** Full-width collapsible project row; dashed guide after the icon gutter. */
+const { t } = useI18n()
+
 withDefaults(defineProps<Project>(), {
   icon: 'box',
   skills: () => [],
@@ -26,10 +28,10 @@ withDefaults(defineProps<Project>(), {
           <component :is="icons[icon]" />
         </IconTile>
 
-        <div class="flex flex-1 items-center gap-2 border-l border-dashed border-line p-4">
+        <div class="flex flex-1 items-center gap-2 border-s border-dashed border-line p-4">
           <div class="flex-1">
             <h3 class="mb-1 text-base leading-snug font-medium text-balance">
-              <CollapsibleTrigger class="cursor-pointer text-left outline-none focus-visible:underline">
+              <CollapsibleTrigger class="cursor-pointer text-start outline-none focus-visible:underline">
                 <!-- Stretches the trigger over the whole row. -->
                 <span
                   class="absolute inset-0"
@@ -56,13 +58,13 @@ withDefaults(defineProps<Project>(), {
                 :href="link"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Open project"
+                :aria-label="t('project.open')"
                 class="relative flex size-6 items-center justify-center text-muted-foreground"
               >
                 <Link class="size-4" />
               </a>
             </TooltipTrigger>
-            <TooltipContent>Open project</TooltipContent>
+            <TooltipContent>{{ t('project.open') }}</TooltipContent>
           </Tooltip>
           <span
             class="flex text-muted-foreground"

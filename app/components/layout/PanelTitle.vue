@@ -13,6 +13,7 @@ const props = withDefaults(defineProps<{
   copyable: true,
 })
 
+const { t } = useI18n()
 const { copy, copied } = useClipboard({ copiedDuring: 1500 })
 
 function copyLink() {
@@ -36,13 +37,13 @@ function copyLink() {
     <slot v-else />
     <sup
       v-if="sup != null"
-      class="relative top-[-0.9em] ml-1 align-baseline text-sm leading-none font-medium tracking-normal text-muted-foreground"
+      class="relative top-[-0.9em] ms-1 align-baseline text-sm leading-none font-medium tracking-normal text-muted-foreground"
     >{{ sup }}</sup>
     <button
       v-if="copyable && href"
       type="button"
-      :aria-label="copied ? 'Link copied' : 'Copy link to section'"
-      class="absolute top-1 ml-1 inline-flex size-7 items-center justify-center rounded-lg text-muted-foreground opacity-0 transition-opacity duration-150 group-hover/title:opacity-100 hover:bg-muted hover:text-foreground focus-visible:opacity-100 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:hover:bg-muted/50"
+      :aria-label="copied ? t('panel.linkCopied') : t('panel.copyLink')"
+      class="absolute top-1 ms-1 inline-flex size-7 items-center justify-center rounded-lg text-muted-foreground opacity-0 transition-opacity duration-150 group-hover/title:opacity-100 hover:bg-muted hover:text-foreground focus-visible:opacity-100 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none dark:hover:bg-muted/50"
       @click="copyLink"
     >
       <Check

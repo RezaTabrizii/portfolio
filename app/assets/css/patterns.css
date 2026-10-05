@@ -67,7 +67,7 @@
     color: var(--foreground);
   }
   .typeset-description p { margin: 0 0 1em; }
-  .typeset-description ul { margin: 0; padding-left: 1.25em; list-style: disc; }
+  .typeset-description ul { margin: 0; padding-inline-start: 1.25em; list-style: disc; }
   .typeset-description li { margin: 0 0 0.5em; }
   .typeset-description li::marker { color: var(--muted-foreground); font-size: 0.75rem; }
   .typeset-description :last-child { margin-bottom: 0; }
