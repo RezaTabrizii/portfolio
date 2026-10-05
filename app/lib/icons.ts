@@ -1,5 +1,6 @@
 import type { Component } from 'vue'
 import {
+  Bot,
   Box,
   BriefcaseBusiness,
   Calendar,
@@ -22,6 +23,7 @@ import {
  * Explicit imports keep the bundle tree-shaken (no full icon set at runtime).
  */
 export const icons = {
+  'bot': Bot,
   'box': Box,
   'briefcase-business': BriefcaseBusiness,
   'calendar': Calendar,

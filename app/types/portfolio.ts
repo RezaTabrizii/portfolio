@@ -47,6 +47,8 @@ export interface Project {
    */
   period: { start: string, end?: string | 'present' }
   link?: string
+  /** Extra labelled links (e.g. GitHub, npm) shown in the expanded body. */
+  links?: { title: string, href: string }[]
   description?: string | string[]
   skills?: string[]
   defaultOpen?: boolean
@@ -90,6 +92,7 @@ export interface Portfolio {
   summary: string
   stack: StackGroup[]
   experience: Experience[]
+  aiWorkflow: { description: string[], skills: string[] }
   projects: Project[]
   contributing: { title: string, paragraphs: string[], ctaLabel: string, ctaSubject: string }
   education: Education[]

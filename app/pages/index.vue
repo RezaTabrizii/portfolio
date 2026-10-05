@@ -149,6 +149,20 @@ useHead({
 
     <StripeDivider />
 
+    <Panel id="ai-workflow">
+      <PanelHeader>
+        <PanelTitle href="#ai-workflow">
+          AI-Assisted Development
+        </PanelTitle>
+      </PanelHeader>
+      <PanelContent class="flex flex-col gap-4">
+        <Description :value="P.aiWorkflow.description" />
+        <SkillTags :skills="P.aiWorkflow.skills" />
+      </PanelContent>
+    </Panel>
+
+    <StripeDivider />
+
     <Panel id="projects">
       <PanelHeader>
         <PanelTitle

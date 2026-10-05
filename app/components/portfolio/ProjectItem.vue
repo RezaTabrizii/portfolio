@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ChevronsUpDown, Link } from 'lucide-vue-next'
+import { ChevronsUpDown, ExternalLink, Link } from 'lucide-vue-next'
 import type { Project } from '~/types/portfolio'
+import { Button } from '@/components/ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { IconTile } from '@/components/ui/icon-tile'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
@@ -82,6 +83,23 @@ withDefaults(defineProps<Project>(), {
             v-if="skills.length"
             :skills="skills"
           />
+          <div
+            v-if="links?.length"
+            class="flex flex-wrap gap-2"
+          >
+            <Button
+              v-for="item in links"
+              :key="item.href"
+              as="a"
+              variant="outline"
+              size="sm"
+              :href="item.href"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink />{{ item.title }}
+            </Button>
+          </div>
         </div>
       </CollapsibleContent>
     </div>
