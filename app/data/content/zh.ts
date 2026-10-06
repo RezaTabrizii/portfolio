@@ -34,6 +34,7 @@ export default {
       location: '中国北京',
       locationType: '远程',
       title: '前端开发工程师',
+      employmentType: '学校招生与在线考试平台',
       description: [
         '为一个连接学生、家长、学校与顾问的教育门户开发前端',
         '在同一个 Nuxt.js monorepo 中开发了 4 个基于角色、各自拥有独立权限模型的管理后台，各应用共享组件、Pinia store、类型与 API 客户端，新增用户类型时无需重复编写 UI 代码',
@@ -45,7 +46,7 @@ export default {
     'nira': {
       location: '伊朗大不里士',
       title: '全栈开发工程师',
-      employmentType: '个人独立项目',
+      employmentType: '珠宝电商',
       description: [
         '独立设计、开发并部署了一个完整的电商平台，包括数据库结构、.NET REST API、店面以及一个 Vue 管理后台，让非技术人员也能运营店铺。MVP 在 5 周内上线',
         '搭建了 GitLab CI/CD 流水线，每次合并时通过 Docker Compose 自动构建并部署整个技术栈，发布无需手动操作服务器',
@@ -57,6 +58,7 @@ export default {
       location: '伊朗德黑兰',
       locationType: '远程',
       title: '后端开发工程师',
+      employmentType: '企业检验与合同 ERP',
       description: [
         '为一个企业级检验合同平台设计后端架构，平台管理 200 多份合同、服务 80 名活跃用户，并通过 S3 存储和分发 75GB 项目文件',
         '设计了基于角色的访问控制（RBAC）系统，为多种用户角色提供细粒度权限，可按角色轻松增删权限，并在角色更新时自动同步所有受影响用户的权限',
@@ -70,6 +72,7 @@ export default {
       location: '中国北京',
       locationType: '远程',
       title: '全栈开发工程师',
+      employmentType: '检验管理平台',
       description: [
         '作为 6 人团队的一员，从零构建了一个检验管理与财务跟踪平台，3 个月内从空仓库上线到生产环境',
         '开发了财务模块，可记录收入与支出、自动计算利润率并生成月度报表，每月替代约 20 小时的手工表格工作',

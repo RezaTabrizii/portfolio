@@ -34,6 +34,7 @@ export default {
       location: 'Peking, China',
       locationType: 'Remote',
       title: 'Frontend-Entwickler',
+      employmentType: 'Schulzulassungs- & Online-Prüfungsplattform',
       description: [
         'Frontend für ein Bildungsportal entwickelt, das Schüler, Eltern, Schulen und Berater miteinander verbindet',
         '4 rollenbasierte Dashboards mit jeweils eigenem Berechtigungsmodell in einem einzigen Nuxt.js-Monorepo entwickelt; Komponenten, Pinia-Stores, Typen und API-Clients werden zwischen den Apps geteilt, sodass jede Nutzergruppe ohne doppelten UI-Code angebunden wird',
@@ -45,7 +46,7 @@ export default {
     'nira': {
       location: 'Täbris, Iran',
       title: 'Full-Stack-Entwickler',
-      employmentType: 'Eigenes Nebenprojekt',
+      employmentType: 'Schmuck-E-Commerce',
       description: [
         'Eine komplette E-Commerce-Plattform allein konzipiert, entwickelt und deployt, inklusive Datenbankschema, .NET-REST-API, Onlineshop und einem Vue-Adminpanel, mit dem auch nicht-technisches Personal den Shop betreiben kann. Das MVP ging nach 5 Wochen live',
         'Eine GitLab-CI/CD-Pipeline eingerichtet, die den Stack bei jedem Merge mit Docker Compose baut und deployt, sodass Releases ohne manuelle Serverarbeit ausgeliefert werden',
@@ -57,6 +58,7 @@ export default {
       location: 'Teheran, Iran',
       locationType: 'Remote',
       title: 'Backend-Entwickler',
+      employmentType: 'Enterprise-Inspektions- & Vertrags-ERP',
       description: [
         'Das Backend einer Enterprise-Plattform für Inspektionsverträge entworfen, die über 200 Verträge für 80 aktive Nutzer verwaltet und 75 GB Projektdateien über S3 speichert und ausliefert',
         'Ein System für rollenbasierte Zugriffskontrolle (RBAC) mit feingranularen Berechtigungen über mehrere Rollen entworfen; Berechtigungen lassen sich pro Rolle einfach hinzufügen oder entfernen und werden bei jeder Rollenänderung automatisch für alle betroffenen Nutzer synchronisiert',
@@ -70,6 +72,7 @@ export default {
       location: 'Peking, China',
       locationType: 'Remote',
       title: 'Full-Stack-Entwickler',
+      employmentType: 'Plattform für Inspektionsmanagement',
       description: [
         'Als Teil eines 6-köpfigen Teams eine Plattform für Inspektionsmanagement und Finanzverfolgung von Grund auf entwickelt und in 3 Monaten vom leeren Repository in die Produktion gebracht',
         'Finanzmodule entwickelt, die Einnahmen und Ausgaben erfassen, Gewinnmargen automatisch berechnen und Monatsberichte erstellen, was ~20 Stunden manuelle Tabellenarbeit pro Monat ersetzt',

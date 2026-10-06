@@ -34,6 +34,7 @@ export default {
       location: 'Beijing, China',
       locationType: 'Remote',
       title: 'Front-end Developer',
+      employmentType: 'School admissions & online exam platform',
       description: [
         'Built the frontend for an educational portal connecting students, parents, schools, and consultants',
         'Developed 4 role-based dashboards with distinct permission models in a single Nuxt.js monorepo, sharing components, Pinia stores, types, and API clients across apps so each user type is onboarded without duplicating UI code',
@@ -45,7 +46,7 @@ export default {
     'nira': {
       location: 'Tabriz, Iran',
       title: 'Full-Stack Developer',
-      employmentType: 'Solo side project',
+      employmentType: 'Jewelry e-commerce',
       description: [
         'Designed, built, and deployed a complete e-commerce platform solo, including the database schema, .NET REST API, storefront, and a Vue admin panel that lets non-technical staff run the store. The MVP went live in 5 weeks',
         'Set up a GitLab CI/CD pipeline that builds and deploys the stack with Docker Compose on every merge, so releases ship without manual server work',
@@ -57,6 +58,7 @@ export default {
       location: 'Tehran, Iran',
       locationType: 'Remote',
       title: 'Back-end Developer',
+      employmentType: 'Enterprise inspection & contract ERP',
       description: [
         'Architected the backend for an enterprise inspection-contract platform managing 200+ contracts across 80 active users, with 75GB of project files stored and served from S3',
         'Designed a role-based access control (RBAC) system with granular permissions across multiple user roles, making permissions simple to add or remove per role and automatically syncing every affected user\'s permissions whenever a role is updated',
@@ -70,6 +72,7 @@ export default {
       location: 'Beijing, China',
       locationType: 'Remote',
       title: 'Full-Stack Developer',
+      employmentType: 'Inspection management platform',
       description: [
         'Built an inspection-management and financial-tracking platform from the ground up as part of a 6-person team, taking it from empty repo to production in 3 months',
         'Developed financial modules that track income and expenses, auto-calculate profit margins, and generate monthly reports, replacing ~20 hours/month of manual spreadsheet work',

@@ -34,6 +34,7 @@ export default {
       location: 'Pekin, Çin',
       locationType: 'Uzaktan',
       title: 'Front-end Geliştirici',
+      employmentType: 'Okul başvuru ve çevrimiçi sınav platformu',
       description: [
         'Öğrencileri, velileri, okulları ve danışmanları buluşturan bir eğitim portalının frontend\'ini geliştirdim',
         'Tek bir Nuxt.js monorepo içinde, her biri farklı yetki modeline sahip 4 rol tabanlı panel geliştirdim; bileşenler, Pinia store\'ları, tipler ve API istemcileri uygulamalar arasında paylaşıldığı için her kullanıcı tipi UI kodu tekrarlanmadan eklenebiliyor',
@@ -45,7 +46,7 @@ export default {
     'nira': {
       location: 'Tebriz, İran',
       title: 'Full-Stack Geliştirici',
-      employmentType: 'Bireysel yan proje',
+      employmentType: 'Mücevher e-ticaret',
       description: [
         'Veritabanı şeması, .NET REST API, vitrin ve teknik olmayan personelin mağazayı yönetebildiği bir Vue yönetim paneli dahil eksiksiz bir e-ticaret platformunu tek başıma tasarlayıp geliştirdim ve yayına aldım. MVP 5 haftada yayına girdi',
         'Her merge\'de tüm yapıyı Docker Compose ile derleyip dağıtan bir GitLab CI/CD hattı kurdum; sürümler manuel sunucu işi gerektirmeden yayınlanıyor',
@@ -57,6 +58,7 @@ export default {
       location: 'Tahran, İran',
       locationType: 'Uzaktan',
       title: 'Back-end Geliştirici',
+      employmentType: 'Kurumsal denetim ve sözleşme ERP sistemi',
       description: [
         '80 aktif kullanıcıyla 200\'den fazla sözleşmeyi yöneten, 75GB proje dosyasını S3 üzerinden saklayıp sunan kurumsal bir denetim sözleşmesi platformunun backend mimarisini tasarladım',
         'Birden çok kullanıcı rolü için ayrıntılı yetkilere sahip rol tabanlı erişim kontrolü (RBAC) sistemi tasarladım; yetkiler rol bazında kolayca eklenip kaldırılabiliyor ve bir rol güncellendiğinde etkilenen tüm kullanıcıların yetkileri otomatik olarak senkronize ediliyor',
@@ -70,6 +72,7 @@ export default {
       location: 'Pekin, Çin',
       locationType: 'Uzaktan',
       title: 'Full-Stack Geliştirici',
+      employmentType: 'Denetim yönetim platformu',
       description: [
         '6 kişilik bir ekibin parçası olarak denetim yönetimi ve finansal takip platformunu sıfırdan geliştirdim ve boş bir depodan 3 ayda canlıya taşıdım',
         'Gelir ve giderleri takip eden, kâr marjlarını otomatik hesaplayan ve aylık raporlar üreten finans modülleri geliştirerek ayda ~20 saatlik manuel tablo işini ortadan kaldırdım',
