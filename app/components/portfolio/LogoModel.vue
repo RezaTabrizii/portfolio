@@ -11,9 +11,9 @@ const props = withDefaults(defineProps<{
   darkSrc?: string
   fallbackSrc?: string
 }>(), {
-  lightSrc: '/3D-models/rt-logo-black.glb',
-  darkSrc: '/3D-models/rt-logo-white.glb',
-  fallbackSrc: '/logo-glyph.png',
+  lightSrc: '/models/rt-logo-black.glb',
+  darkSrc: '/models/rt-logo-white.glb',
+  fallbackSrc: '/brand/rt-glyph.png',
 })
 
 const colorMode = useColorMode()

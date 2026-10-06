@@ -18,7 +18,7 @@ pnpm lint && pnpm typecheck
 
 Requires Node 22+ and pnpm 10 (`corepack enable`).
 
-> **CV download:** the header button links to `/Reza_Tabrizi_CV.pdf`. Put the PDF in `public/` — it is not committed yet.
+> **CV download:** the header button links to `/Reza_Tabrizi_CV.pdf`, served from `public/` root so the URL stays stable.
 
 ## Configuration
 
@@ -44,7 +44,12 @@ app/
   types/portfolio.ts Content types
   utils/date.ts      `formatDuration` (inclusive months → "1y 6m")
   layouts/default.vue, pages/index.vue, router.options.ts
-public/              logos, favicon (add Reza_Tabrizi_CV.pdf here)
+public/
+  Reza_Tabrizi_CV.pdf  CV download (kept at the root — its URL is shared externally)
+  brand/             RT symbol SVGs + flat glyph (3D-model fallback)
+  icons/             favicon, apple-touch-icon
+  images/            avatar renditions, profile photo (structured data), og-image
+  models/            RT logo .glb files (light/dark)
 docker/              nginx.conf + security headers
 ```
 

@@ -39,7 +39,7 @@ const localePath = useLocalePath()
           class="me-auto flex"
         >
           <img
-            src="/rt-symbol-black.svg"
+            src="/brand/rt-symbol-black.svg"
             alt=""
             width="16"
             height="16"

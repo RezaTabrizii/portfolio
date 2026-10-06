@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<{
 const SESSION_KEY = 'rt-loaded'
 const SKIP_CLASS = 'rt-skip-loader'
 
-// Subpaths of public/rt-symbol-black.svg, split so each traces on its own.
+// Subpaths of public/brand/rt-symbol-black.svg, split so each traces on its own.
 const GLYPH = [
   'M36 52L54 34H156V70H54Z',
   'M224 34H326L344 52L326 70H224Z',

@@ -23,18 +23,18 @@ export const LINKEDIN_URL = `https://linkedin.com/in/${LINKEDIN_HANDLE}`
 export const EMAIL = 'smr.tabrizi@gmail.com'
 export const PHONE = '+98 992 348 0125'
 
-/** Served from `public/`. Add the PDF there — the header button links to it. */
+/** Served from the `public/` root so the shared URL stays stable. */
 export const CV = { href: '/Reza_Tabrizi_CV.pdf', fileName: 'Reza_Tabrizi_CV.pdf' } as const
 
-/** Avatar renditions in `public/` (webp, square) plus a 640px JPEG for structured data. */
+/** Avatar renditions in `public/images/` (webp, square) plus a 640px JPEG for structured data. */
 export const AVATAR = {
-  src: '/avatar-160.webp',
-  srcset: '/avatar-160.webp 160w, /avatar-320.webp 320w, /avatar-480.webp 480w',
-  photo: '/profile.jpg',
+  src: '/images/avatar-160.webp',
+  srcset: '/images/avatar-160.webp 160w, /images/avatar-320.webp 320w, /images/avatar-480.webp 480w',
+  photo: '/images/profile.jpg',
 } as const
 
 /** Social share card (Open Graph / Twitter). */
-export const OG_IMAGE = { src: '/og-image.jpg', width: 1200, height: 630, type: 'image/jpeg' } as const
+export const OG_IMAGE = { src: '/images/og-image.jpg', width: 1200, height: 630, type: 'image/jpeg' } as const
 
 /** BCP 47 codes for the `languages` line in the copy (JSON-LD `knowsLanguage`). */
 export const SPOKEN_LANGUAGES = ['fa', 'tr', 'en'] as const

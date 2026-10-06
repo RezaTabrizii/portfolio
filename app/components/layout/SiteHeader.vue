@@ -55,7 +55,7 @@ const iconButton = buttonVariants({ variant: 'ghost', size: 'icon-sm' })
       >
         <!-- Black glyph: multiply on light, invert + screen on dark. -->
         <img
-          src="/rt-symbol-black.svg"
+          src="/brand/rt-symbol-black.svg"
           alt=""
           width="24"
           height="24"

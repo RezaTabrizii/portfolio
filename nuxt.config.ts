@@ -24,8 +24,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#09090b' },
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
-        { rel: 'apple-touch-icon', href: '/logo-tile.png' },
+        { rel: 'icon', type: 'image/png', href: '/icons/favicon.png' },
+        { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon.png' },
       ],
     },
   },
