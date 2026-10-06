@@ -2,11 +2,11 @@ import type { PortfolioCopy } from '~/types/portfolio'
 
 export default {
   meta: {
-    title: 'رضا تبریزی — توسعه‌دهنده فول‌استک (.NET و Vue)',
+    title: 'سید محمد رضا تبریزی — توسعه‌دهنده فول‌استک (.NET و Vue)',
     description: 'توسعه‌دهنده فول‌استک با بیش از ۳ سال تجربه در ساخت سرتاسری سیستم‌های عملیاتی با .NET و Vue. ساکن تبریز، ایران — آماده همکاری دورکاری.',
   },
-  name: 'رضا تبریزی',
-  avatarAlt: 'تصویر رضا تبریزی',
+  name: 'سید محمد رضا تبریزی',
+  avatarAlt: 'تصویر سید محمد رضا تبریزی',
   jobTitle: 'توسعه‌دهنده فول‌استک',
   tagline: 'فول‌استک · .NET و Vue',
   headline: 'توسعه‌دهنده فول‌استک — .NET و Vue',
